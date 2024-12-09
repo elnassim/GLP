@@ -7,18 +7,15 @@ import './LandingPage.css';
 
 function LandingPage() {
     return (
-        <div className="landing-page">
+        <div className="landing-page min-h-screen flex flex-col">
             <Navbar />
             <Hero />
-            <main>
+            <main className="flex-grow">
                 <InfoSection id="about" title="About Us">
                     We are committed to providing the best services to our customers.
                 </InfoSection>
                 <InfoSection id="services" title="Services">
                     Explore the wide range of services we offer.
-                </InfoSection>
-                <InfoSection id="contact" title="Contact">
-                    Get in touch with us for more information.
                 </InfoSection>
             </main>
             <footer className="footer">

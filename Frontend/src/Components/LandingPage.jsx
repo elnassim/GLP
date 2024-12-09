@@ -1,33 +1,23 @@
-// LandingPage.jsx
 import React from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
-import InfoSection from './InfoSection';
 import RoleSelector from './RoleSelector';
 import './LandingPage.css';
+import backgroundLanding from '../assets/background-landing.jpg';
 
 function LandingPage() {
     return (
-        <div className="landing-page flex flex-col min-h-screen w-full">
+        <div
+            className="landing-page flex flex-col min-h-screen w-full bg-cover bg-center relative"
+            style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundLanding})`,
+            }}
+        >
             <Navbar />
             <Hero />
-            <RoleSelector />
-            <main className="flex-grow">
-                <InfoSection id="about" title="About Us">
-                    We are committed to providing the best services to our customers.
-                </InfoSection>
-                <InfoSection id="services" title="Services">
-                    Explore the wide range of services we offer.
-                </InfoSection>
-            </main>
-            <footer className="footer">
-                <p>&copy; 2023 Our Website. All rights reserved.</p>
-                <div className="social-media">
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </footer>
+            <div className="flex-grow flex items-center justify-center">
+                <RoleSelector />
+            </div>
         </div>
     );
 }

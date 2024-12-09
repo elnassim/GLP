@@ -3,13 +3,15 @@ import React from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import InfoSection from './InfoSection';
+import RoleSelector from './RoleSelector';
 import './LandingPage.css';
 
 function LandingPage() {
     return (
-        <div className="landing-page min-h-screen flex flex-col">
+        <div className="landing-page flex flex-col min-h-screen w-full">
             <Navbar />
             <Hero />
+            <RoleSelector />
             <main className="flex-grow">
                 <InfoSection id="about" title="About Us">
                     We are committed to providing the best services to our customers.

@@ -1,37 +1,40 @@
+// Frontend/src/Components/Navbar.jsx
 import React from 'react';
 import logo from '../assets/logo.png';
+import './Navbar.css'; // Import the custom CSS
 
 function Navbar() {
     return (
-        <header className="bg-blue-900 text-white">
+        <header className="navbar">
             {/* Main navbar */}
-            <nav className="w-full px-6 py-3">
-                <div className="flex items-center justify-between">
+            <nav className="navbar-container">
+                <div className="navbar-content">
                     {/* Logo */}
-                    <a href="/" className="flex items-center space-x-2">
-                        <img src={logo} className="h-16" alt="Logo" />
+                    <a href="/" className="logo">
+                        <img src={logo} alt="Logo" className="logo-image" />
                     </a>
 
                     {/* Navigation links */}
-                    <ul className="hidden md:flex space-x-8 ml-2"> {/* Increased space-x-8 */}
+                    <ul className="nav-links">
                         <li>
-                            <a href="#" className="hover:text-orange-400">Home</a>
+                            <a href="#" className="nav-link">Home</a>
                         </li>
                         <li>
-                            <a href="#" className="hover:text-orange-400">About Us</a>
+                            <a href="#" className="nav-link">About Us</a>
                         </li>
                         <li>
-                            <a href="#" className="hover:text-orange-400">Contact Us</a>
+                            <a href="#" className="nav-link">Contact Us</a>
                         </li>
                     </ul>
 
                     {/* Mobile menu button */}
                     <button
-                        className="md:hidden flex items-center justify-center p-2 text-white hover:bg-blue-700"
+                        className="mobile-menu-button"
                         aria-label="Open Menu"
+                        onClick={() => {/* Add your mobile menu toggle logic here */}}
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <svg className="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>

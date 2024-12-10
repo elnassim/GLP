@@ -1,18 +1,20 @@
-/* InfoSection.css */
+/* Frontend/src/Components/InfoSection.css */
+
 .info-section {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
+    max-width: 50rem; /* Equivalent to max-w-2xl */
+    margin: 0 auto 2.5rem auto; /* Equivalent to mb-10 */
     text-align: center;
+    padding: 2rem 1rem;
 }
 
-.info-section h2 {
+.info-title {
     font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333333;
+    margin-bottom: 1.25rem; /* Equivalent to mb-5 */
+    color: #1e3a8a; /* Customize as needed */
 }
 
-.info-section p {
+.info-content {
     font-size: 1rem;
-    color: #666666;
+    color: #4b5563; /* Equivalent to text-gray-600 */
     line-height: 1.6;
 }

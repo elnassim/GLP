@@ -8,13 +8,15 @@
 
 .navbar-container {
     width: 100%;
-    padding: 0.75rem 1.5rem; /* Equivalent to px-6 py-3 */
+    padding: 1rem 1.5rem; 
 }
 
 .navbar-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 3rem; 
+    padding: 0; 
 }
 
 .logo {
@@ -23,7 +25,7 @@
 }
 
 .logo-image {
-    height: 4rem; /* Equivalent to h-16 */
+    height: 3rem; /* Equivalent to h-16 */
 }
 
 .nav-links {

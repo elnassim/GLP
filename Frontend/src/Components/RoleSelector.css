@@ -1,0 +1,73 @@
+/* Frontend/src/Components/RoleSelector.css */
+
+.role-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .role-selector {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.role-button {
+    position: relative;
+    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
+    border-radius: 0.5rem; /* Equivalent to rounded-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to shadow-md */
+    overflow: hidden;
+    width: 24rem; /* Equivalent to w-96 */
+    height: 16rem; /* Equivalent to h-64 */
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    margin-bottom: 0.5rem; /* Equivalent to mb-2 */
+}
+
+@media (min-width: 768px) {
+    .role-button {
+        margin-bottom: 0;
+        margin-left: 2rem; /* Equivalent to md:ml-8 */
+    }
+}
+
+.role-button:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Equivalent to hover:shadow-xl */
+}
+
+.admin-button {
+    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
+}
+
+.student-button {
+    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
+}
+
+.role-icon {
+    width: 1.5rem; /* Equivalent to w-6 */
+    height: 1.25rem; /* Equivalent to h-5 */
+    margin-right: 0.5rem; /* Equivalent to me-2 */
+    -webkit-transform: translateX(-0.25rem); /* Equivalent to -ms-1 */
+    transform: translateX(-0.25rem);
+}
+
+.student-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.student-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff; /* Equivalent to text-white */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; /* Equivalent to rounded */
+    font-size: 1rem;
+}

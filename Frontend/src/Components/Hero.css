@@ -28,15 +28,23 @@
     inset: 0;
     background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
 }
+<<<<<<< HEAD
 .highlight {
     color: orange; /* Set the text color to orange */
     font-weight: bold; /* Optional: Make the text bold */
 }
+=======
+
+>>>>>>> 29c9a54076de35e4b86a306a303ce56c2fa9eff2
 .content {
     position: relative;
     z-index: 10;
     padding: 0 16px;
     color: white;
+<<<<<<< HEAD
+=======
+    margin-top: 120px;
+>>>>>>> 29c9a54076de35e4b86a306a303ce56c2fa9eff2
 }
 
 .title {
@@ -66,4 +74,11 @@
 
 .cta-button:hover {
     background-color: #cc5200; /* Darker orange */
+<<<<<<< HEAD
+=======
+}
+.highlight {
+    color: orange; /* Set the text color to orange */
+    font-weight: bold; /* Optional: Make the text bold */
+>>>>>>> 29c9a54076de35e4b86a306a303ce56c2fa9eff2
 }

@@ -1,57 +1,53 @@
-/* LandingPage.css */
-
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden; /* Prevent horizontal scrolling if any element overflows */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
-}
+/* Frontend/src/Components/LandingPage.css */
 
 .landing-page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 100%; /* Make the container span the full width */
-    margin: 0; /* Remove any margins */
-    padding: 0; /* Remove any padding */
-    box-sizing: border-box; /* Include padding and borders in width/height calculations */
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
+.role-selector-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.main {
-    padding: 60px 40px;
+.landing-main {
+    flex-grow: 1;
+    padding: 2rem 1rem;
     background-color: #ffffff;
-    flex: 1; /* Ensure main takes up remaining space */
 }
 
 .footer {
-    background-color: #333333;
+    background-color: #1e3a8a; /* Equivalent to bg-blue-900 */
     color: #ffffff;
     text-align: center;
-    padding: 20px 40px;
-    width: 100%; /* Full width */
+    padding: 1.25rem 3rem; /* Equivalent to p-5 px-10 */
 }
 
 .footer .social-media {
-    margin-top: 5px; /* Adjust margin to move it up */
+    margin-top: 0.3125rem; /* Equivalent to mt-1 */
 }
 
 .footer .social-media a {
-    margin: 0 10px;
+    margin: 0 0.625rem; /* Equivalent to mx-2.5 */
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer .social-media a:hover {
-    color: #007BFF;
+    color: #1d4ed8; /* Equivalent to hover:text-blue-500 */
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .navbar {
+    .navbar-container {
         flex-direction: column;
         align-items: flex-start;
     }
@@ -59,18 +55,24 @@ body {
     .nav-links {
         flex-direction: column;
         width: 100%;
+        display: none; /* Ensure it's hidden on mobile by default */
     }
 
-    .nav-links a {
-        padding: 10px 0;
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 0.625rem 0; /* Equivalent to py-2.5 */
         width: 100%;
+        text-align: left;
     }
 
-    .hero h1 {
-        font-size: 2.5rem;
+    .hero-title {
+        font-size: 2.5rem; /* Equivalent to text-5xl on mobile */
     }
 
-    .hero p {
-        font-size: 1rem;
+    .hero-description {
+        font-size: 1rem; /* Equivalent to text-lg on mobile */
     }
 }

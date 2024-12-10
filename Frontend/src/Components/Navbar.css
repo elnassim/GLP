@@ -1,31 +1,80 @@
-/* Navbar.css */
+/* Frontend/src/Components/Navbar.css */
+
 .navbar {
-    width: 100%;
-    margin: 0;
-    padding: 20px 40px; /* Adjust padding as needed */
+    background-color: #1e3a8a; /* Equivalent to bg-blue-900 */
+    color: #ffffff; /* Equivalent to text-white */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+}
+
+.navbar-container {
+    width: 100%;
+    padding: 0.75rem 1.5rem; /* Equivalent to px-6 py-3 */
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333333;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 4rem; /* Equivalent to h-16 */
 }
 
 .nav-links {
+    display: none; /* Hidden by default on mobile */
     list-style: none;
-    display: flex;
-    gap: 20px;
+    margin-left: 0.5rem; /* Equivalent to ml-2 */
+    gap: 2rem; /* Equivalent to space-x-8 */
 }
 
-.nav-links a {
+.nav-link {
+    color: #ffffff;
     text-decoration: none;
-    color: #555555;
     font-size: 1rem;
     transition: color 0.3s;
 }
 
-.nav-links a:hover {
-    color: #007BFF;
+.nav-link:hover {
+    color: #f97316; /* Equivalent to hover:text-orange-400 */
+}
+
+.mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem; /* Equivalent to p-2 */
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mobile-menu-button:hover {
+    background-color: #1c4ed8; /* Equivalent to hover:bg-blue-700 */
+}
+
+.menu-icon {
+    width: 1.5rem; /* Equivalent to w-6 */
+    height: 1.5rem; /* Equivalent to h-6 */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+
+    .mobile-menu-button {
+        display: none;
+    }
 }

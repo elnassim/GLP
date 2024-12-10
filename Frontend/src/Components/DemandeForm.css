@@ -1,0 +1,76 @@
+/* Frontend/src/Components/DemandeForm.css */
+
+.demande-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.demande-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #1e3a8a;
+    text-align: center;
+}
+
+.demande-label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.demande-input,
+.demande-select,
+.demande-textarea {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    color: #1f2937;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.demande-input:focus,
+.demande-select:focus,
+.demande-textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.demande-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.demande-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.demande-submit-button,
+.demande-back-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.demande-submit-button:hover {
+    background-color: #2563eb;
+}
+
+.demande-back-button {
+    background-color: #6b7280; /* Gray color */
+}
+
+.demande-back-button:hover {
+    background-color: #4b5563;
+}

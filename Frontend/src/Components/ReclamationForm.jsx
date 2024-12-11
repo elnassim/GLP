@@ -1,114 +1,59 @@
 // Frontend/src/Components/ReclamationForm.jsx
 import React, { useState } from 'react';
+import api from '../api';
 import './ReclamationForm.css'; // Import the custom CSS
 
-function ReclamationForm({ onSubmit, onBack }) {
+function ReclamationForm({ onBack }) {
     const [formData, setFormData] = useState({
         email: '',
-        numeroApogee: '',
-        cin: '',
         sujet: '',
         description: '',
     });
+    const [errors, setErrors] = useState({});
+    const [success, setSuccess] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('Form Data Submitted:', formData);
-        alert('Votre réclamation a été soumise avec succès.');
-        // Reset form or navigate as needed
-        onSubmit();
+        setErrors({});
+        setSuccess('');
+
+        try {
+            const response = await api.post('/reclamation', formData);
+            setSuccess(response.data.message);
+            setFormData({
+                email: '',
+                sujet: '',
+                description: '',
+            });
+        } catch (error) {
+            if (error.response && error.response.data.errors) {
+                setErrors(error.response.data.errors);
+            }
+        }
     };
 
     return (
-        <form className="reclamation-form" onSubmit={handleSubmit}>
-            <h2 className="reclamation-title">Formulaire de Réclamation</h2>
-
-            <label htmlFor="email" className="reclamation-label">
-                Adresse Email:
-            </label>
+        <form onSubmit={handleSubmit}>
+            {/* Form Fields */}
             <input
                 type="email"
-                id="email"
                 name="email"
-                className="reclamation-input"
                 value={formData.email}
                 onChange={handleChange}
                 required
             />
-
-            <label htmlFor="numeroApogee" className="reclamation-label">
-                Numéro d’apogée:
-            </label>
-            <input
-                type="text"
-                id="numeroApogee"
-                name="numeroApogee"
-                className="reclamation-input"
-                value={formData.numeroApogee}
-                onChange={handleChange}
-                required
-            />
-
-            <label htmlFor="cin" className="reclamation-label">
-                CIN (Carte d’Identité Nationale):
-            </label>
-            <input
-                type="text"
-                id="cin"
-                name="cin"
-                className="reclamation-input"
-                value={formData.cin}
-                onChange={handleChange}
-                required
-            />
-
-            <label htmlFor="sujet" className="reclamation-label">
-                Sujet:
-            </label>
-            <input
-                type="text"
-                id="sujet"
-                name="sujet"
-                className="reclamation-input"
-                value={formData.sujet}
-                onChange={handleChange}
-                required
-            />
-
-            <label htmlFor="description" className="reclamation-label">
-                Description de la Réclamation:
-            </label>
-            <textarea
-                id="description"
-                name="description"
-                className="reclamation-textarea"
-                value={formData.description}
-                onChange={handleChange}
-                placeholder="Veuillez décrire votre réclamation en détail..."
-                required
-            ></textarea>
-
-            <div className="reclamation-buttons">
-                <button type="submit" className="reclamation-submit-button">
-                    Soumettre
-                </button>
-                <button
-                    type="button"
-                    className="reclamation-back-button"
-                    onClick={onBack}
-                >
-                    Retour
-                </button>
-            </div>
+            {/* Other fields */}
+            <button type="submit">Soumettre</button>
+            <button type="button" onClick={onBack}>Retour</button>
+            {success && <p>{success}</p>}
+            {Object.keys(errors).map((key) => (
+                <p key={key}>{errors[key][0]}</p>
+            ))}
         </form>
     );
 }

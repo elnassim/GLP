@@ -1,4 +1,3 @@
-// Frontend/src/Components/Formulate.jsx
 import React, { useState } from 'react';
 import DemandeForm from './DemandeForm.jsx';
 import ReclamationForm from './ReclamationForm.jsx';

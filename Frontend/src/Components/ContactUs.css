@@ -1,6 +1,6 @@
-/* Frontend/src/Components/AboutUs.css */
+/* ContactUs.css */
 
-.aboutus-page {
+.contactus-page {
     position: relative;
     height: 100vh;
     display: flex;
@@ -10,58 +10,58 @@
     margin: 0;
 }
 
-.aboutus-background {
+.contactus-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: url('..\assets\background-landing.jpg') center/cover no-repeat;
-    filter: blur(8px); /* Floute seulement l'image d'arrière-plan */
-    z-index: -1; /* Assure que le contenu est au-dessus */
+    filter: blur(8px);
+    z-index: -1;
 }
 
-.aboutus-container {
-    max-width: 1200px; /* Augmentez la largeur maximale */
-    padding: 3rem;     /* Ajoutez plus de padding pour rendre la section plus spacieuse */
+.contactus-container {
+    max-width: 1200px;
+    padding: 3rem;
     background: linear-gradient(145deg, #f0f4ff, #dfe8ff);
     border-radius: 1rem;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     font-family: 'Roboto', sans-serif;
 }
 
-.aboutus-header {
+.contactus-header {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.aboutus-title {
+.contactus-title {
     font-size: 3rem;
     color: #b9450f;
 }
 
-.aboutus-content {
+.contactus-content {
     font-size: 1.1rem;
     color: #4b5563;
     line-height: 1.8;
 }
 
-.aboutus-content p {
+.contactus-content p {
     margin-bottom: 1.5rem;
 }
 
-.aboutus-footer {
+.contactus-footer {
     text-align: center;
     margin-top: 2rem;
     font-size: 0.9rem;
     color: #2359c5;
 }
 
-.aboutus-footer a {
-    color: #b9450f;
+.contactus-footer a {
+    color: #e25d1f;
     text-decoration: none;
 }
 
-.aboutus-footer a:hover {
+.contactus-footer a:hover {
     text-decoration: underline;
 }

@@ -1,73 +1,46 @@
-/* Frontend/src/Components/RoleSelector.css */
-
 .role-selector {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 3rem;
-}
-
-@media (min-width: 768px) {
-    .role-selector {
-        flex-direction: row;
-        justify-content: center;
-    }
+    gap: 30px; /* Space between buttons */
+    margin-top: 20px;
 }
 
 .role-button {
-    position: relative;
-    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
-    border-radius: 0.5rem; /* Equivalent to rounded-lg */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to shadow-md */
-    overflow: hidden;
-    width: 24rem; /* Equivalent to w-96 */
-    height: 16rem; /* Equivalent to h-64 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff7f50; /* Soft orange coral color */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    padding: 12px 24px; /* Increased padding for bigger buttons */
+    font-size: 16px; /* Larger font size */
+    font-weight: bold;
     cursor: pointer;
-    transition: box-shadow 0.3s;
-    margin-bottom: 0.5rem; /* Equivalent to mb-2 */
-}
-
-@media (min-width: 768px) {
-    .role-button {
-        margin-bottom: 0;
-        margin-left: 2rem; /* Equivalent to md:ml-8 */
-    }
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    min-width: 150px; /* Ensures buttons are wide enough */
+    text-align: center;
 }
 
 .role-button:hover {
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Equivalent to hover:shadow-xl */
-}
-
-.admin-button {
-    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
-}
-
-.student-button {
-    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
+    background-color: #e5673d; /* Darker orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
 
 .role-icon {
-    width: 1.5rem; /* Equivalent to w-6 */
-    height: 1.25rem; /* Equivalent to h-5 */
-    margin-right: 0.5rem; /* Equivalent to me-2 */
-    -webkit-transform: translateX(-0.25rem); /* Equivalent to -ms-1 */
-    transform: translateX(-0.25rem);
+    width: 24px; /* Size of the icon */
+    height: 24px; /* Size of the icon */
+    margin-right: 10px; /* Space between icon and text */
 }
 
-.student-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.role-label {
+    display: inline-block;
 }
 
-.student-label {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ffffff; /* Equivalent to text-white */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 0.5rem 1rem;
-    border-radius: 9999px; /* Equivalent to rounded */
-    font-size: 1rem;
+.admin-button,
+.student-button {
+    min-width: 180px; /* Adjust button width */
 }

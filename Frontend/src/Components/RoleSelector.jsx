@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RoleSelector.css';
 
 function RoleSelector({ onAdminClick }) {
+    const navigate = useNavigate(); // Hook for navigation
+
     const handleStudentClick = () => {
-        console.log('Student selected');
+        navigate('/formulate'); // Redirect to the student page
     };
 
     return (
@@ -15,7 +18,7 @@ function RoleSelector({ onAdminClick }) {
                 <span className="role-label">Admin</span>
             </button>
             <button
-                onClick={handleStudentClick}
+                onClick={handleStudentClick} // Navigate to the student page
                 className="role-button student-button"
             >
                 <span className="role-label">Student</span>
@@ -24,4 +27,4 @@ function RoleSelector({ onAdminClick }) {
     );
 }
 
-export default RoleSelector;
+export default RoleSelector;

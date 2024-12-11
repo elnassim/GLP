@@ -24,7 +24,8 @@ function Navbar() {
                             <Link to="/aboutus" className="nav-link">About Us</Link> {/* Updated Link */}
                         </li>
                         <li>
-                            <a href="#" className="nav-link">Contact Us</a> {/* Update similarly if needed */}
+                        <Link to="/contact" className="nav-link">Contact Us</Link>
+ 
                         </li>
                     </ul>
 

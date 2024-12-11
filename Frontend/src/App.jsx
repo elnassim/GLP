@@ -4,6 +4,7 @@ import Formulate from './Components/Formulate.jsx';
 import DemandeForm from './Components/DemandeForm.jsx';
 import ReclamationForm from './Components/ReclamationForm.jsx';
 import AboutUs from './Components/AboutUs.jsx';
+import ContactUs from './Components/ContactUs.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                     <Route path="reclamation" element={<ReclamationForm />} />
                 </Route>
                 <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/contact" element={<ContactUs />} />
                 {/* Add other routes as needed */}
             </Routes>
         </Router>

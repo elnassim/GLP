@@ -1,54 +1,27 @@
-// Frontend/src/Components/RoleSelector.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import adminImage from '../assets/admin.jpg'; // Ensure the path is correct
-import studentImage from '../assets/student.jpg';
-import './RoleSelector.css'; // Import the custom CSS
+import './RoleSelector.css';
 
-function RoleSelector() {
-    const navigate = useNavigate();
-    const handleAdminClick = () => {
-        // Handle admin selection, e.g., navigate to admin dashboard
-        console.log('Admin selected');
-        // Example: window.location.href = '/admin-dashboard';
-    };
-
+function RoleSelector({ onAdminClick }) {
     const handleStudentClick = () => {
-        // Handle student selection, e.g., navigate to student dashboard
-        navigate('/formulate');
-        // Example: window.location.href = '/student-dashboard';
+        console.log('Student selected');
     };
 
     return (
         <div className="role-selector">
-            {/* Admin Selection */}
             <button
-                type="button"
-                onClick={handleStudentClick}
-                className="role-button student-button"
+                onClick={onAdminClick} // Navigate to the admin page
+                className="role-button admin-button"
             >
-                <img
-                    src={studentImage}
-                    alt="Student"
-                    className="student-image"
-                />
-                <span className="student-label">Admin</span>
+                <span className="role-label">Admin</span>
             </button>
-
-            {/* Student Selection */}
             <button
                 onClick={handleStudentClick}
                 className="role-button student-button"
             >
-                <img
-                    src={studentImage}
-                    alt="Student"
-                    className="student-image"
-                />
-                <span className="student-label">Student</span>
+                <span className="role-label">Student</span>
             </button>
         </div>
     );
 }
 
-export default RoleSelector;
+export default RoleSelector;

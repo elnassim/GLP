@@ -1,4 +1,3 @@
-// Frontend/src/Components/Hero.jsx
 import React from 'react';
 import './Hero.css';
 
@@ -12,9 +11,10 @@ function Hero() {
             {/* The main content of the hero section */}
             <div className="content">
                 {/* Title of the hero section */}
-                <h1 className="title">
-                    Welcome to <span className="highlight">University</span>
-                </h1>
+                <h1 className="title" style={{ fontSize: '4rem' }}>
+                 Welcome to <span className="highlight">University</span>
+               </h1>
+
                 {/* Subtitle providing additional context */}
                 <p className="subtitle">Empowering you with information, anytime, anywhere.</p>
                 {/* Optional: A button for call-to-action, commented out for now */}

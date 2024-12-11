@@ -19,6 +19,7 @@ function App() {
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/contact" element={<ContactUs />} />
                 {/* Add other routes as needed */}
+                <Route path="*" element={<LandingPage />} />
             </Routes>
         </Router>
     );

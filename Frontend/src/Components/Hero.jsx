@@ -11,7 +11,7 @@ function Hero() {
             {/* The main content of the hero section */}
             <div className="content">
                 {/* Title of the hero section */}
-                <h1 className="title" style={{ fontSize: '4rem' }}>
+                <h1 className="title" style={{ fontSize: '4.5rem' }}>
                  Welcome to <span className="highlight">University</span>
                </h1>
 

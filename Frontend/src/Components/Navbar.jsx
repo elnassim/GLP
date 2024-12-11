@@ -1,7 +1,7 @@
 // Frontend/src/Components/Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link
-import logo from '../assets/logo.png';
+import logo from '../assets/logo-white.png';
 import './Navbar.css'; // Import the custom CSS
 
 function Navbar() {

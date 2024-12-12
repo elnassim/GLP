@@ -1,48 +1,29 @@
-// Frontend/src/Components/RoleSelector.jsx
 import React from 'react';
-import adminImage from '../assets/admin.jpg'; // Ensure the path is correct
-import studentImage from '../assets/student.jpg';
-import './RoleSelector.css'; // Import the custom CSS
+import { useNavigate } from 'react-router-dom';
+import './RoleSelector.css';
 
-function RoleSelector() {
+function RoleSelector({ onAdminClick }) {
+    const navigate = useNavigate(); // Hook for navigation
     const handleAdminClick = () => {
-        // Handle admin selection, e.g., navigate to admin dashboard
-        console.log('Admin selected');
-        // Example: window.location.href = '/admin-dashboard';
+        navigate('/AdminLogin'); // Redirect to the student page
     };
-
     const handleStudentClick = () => {
-        // Handle student selection, e.g., navigate to student dashboard
-        console.log('Student selected');
-        // Example: window.location.href = '/student-dashboard';
+        navigate('/formulate'); // Redirect to the student page
     };
 
     return (
         <div className="role-selector">
-            {/* Admin Selection */}
             <button
-                onClick={handleStudentClick}
-                className="role-button student-button"
+                onClick={handleAdminClick} // Navigate to the admin page
+                className="role-button admin-button"
             >
-                <img
-                    src={studentImage}
-                    alt="Student"
-                    className="student-image"
-                />
-                <span className="student-label">Admin</span>
+                <span className="role-label">Admin</span>
             </button>
-
-            {/* Student Selection */}
             <button
-                onClick={handleStudentClick}
+                onClick={handleStudentClick} // Navigate to the student page
                 className="role-button student-button"
             >
-                <img
-                    src={studentImage}
-                    alt="Student"
-                    className="student-image"
-                />
-                <span className="student-label">Student</span>
+                <span className="role-label">Student</span>
             </button>
         </div>
     );

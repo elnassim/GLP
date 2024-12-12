@@ -1,6 +1,7 @@
 // Frontend/src/Components/Navbar.jsx
 import React from 'react';
-import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom'; // Import Link
+import logo from '../assets/logo-white.png';
 import './Navbar.css'; // Import the custom CSS
 
 function Navbar() {
@@ -10,20 +11,21 @@ function Navbar() {
             <nav className="navbar-container">
                 <div className="navbar-content">
                     {/* Logo */}
-                    <a href="/" className="logo">
+                    <Link to="/" className="logo"> {/* Changed from <a> to <Link> */}
                         <img src={logo} alt="Logo" className="logo-image" />
-                    </a>
+                    </Link>
 
                     {/* Navigation links */}
                     <ul className="nav-links">
                         <li>
-                            <a href="#" className="nav-link">Home</a>
+                            <Link to="/" className="nav-link">Home</Link> {/* Changed from <a> to <Link> */}
                         </li>
                         <li>
-                            <a href="#" className="nav-link">About Us</a>
+                            <Link to="/aboutus" className="nav-link">About Us</Link> {/* Updated Link */}
                         </li>
                         <li>
-                            <a href="#" className="nav-link">Contact Us</a>
+                        <Link to="/contact" className="nav-link">Contact Us</Link>
+ 
                         </li>
                     </ul>
 

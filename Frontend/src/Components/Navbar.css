@@ -1,29 +1,38 @@
-/* Frontend/src/Components/Navbar.css */
-
 .navbar {
-    background-color: #1e3a8a; /* Equivalent to bg-blue-900 */
+    background-color: #874206; /* Equivalent to bg-blue-900 */
     color: #ffffff; /* Equivalent to text-white */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixe la navbar en haut */
+    top: 0; /* Positionne la navbar au sommet */
+    left: 0; /* S'étend à gauche */
+    width: 100%; /* S'étend sur toute la largeur */
+    z-index: 1000; /* Assure que la navbar reste au-dessus des autres éléments */
 }
 
 .navbar-container {
     width: 100%;
-    padding: 0.75rem 1.5rem; /* Equivalent to px-6 py-3 */
+    padding: 1rem 1.5rem;
+    box-sizing: border-box; /* Assure que le padding ne dépasse pas la largeur */
+    padding-left: 0px;
 }
 
 .navbar-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 3rem; 
+    padding: 0;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    padding-top: 55px;
+    
 }
 
 .logo-image {
-    height: 4rem; /* Equivalent to h-16 */
+    height: 8rem; /* Equivalent to h-16 */
 }
 
 .nav-links {

@@ -1,4 +1,3 @@
-// Frontend/src/Components/Hero.jsx
 import React from 'react';
 import './Hero.css';
 
@@ -9,15 +8,15 @@ function Hero() {
             {/* Overlay to darken the background and enhance text visibility */}
             <div className="overlay"></div>
 
-            {/* Content */}
-            <div className="relative z-10 px-4">
-                <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                    Welcome to University
-                </h1>
-                <p className="text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto">
-                Empowering you with information, anytime, anywhere.
-                </p>
-                {/* Optional: Add a Call-to-Action Button */}
+            {/* The main content of the hero section */}
+            <div className="content">
+                {/* Title of the hero section */}
+                <h1 className="title">
+                    Welcome to <span className="highlight">University</span>
+                </h1>
+                {/* Subtitle providing additional context */}
+                <p className="subtitle">Empowering you with information, anytime, anywhere.</p>
+                {/* Optional: A button for call-to-action, commented out for now */}
                 {/* 
                 <button className="cta-button">Get Started</button>
                 */}

@@ -17,6 +17,7 @@ class ReclamationController extends Controller
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'email'       => 'required|email',
+            'sujet'       => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 

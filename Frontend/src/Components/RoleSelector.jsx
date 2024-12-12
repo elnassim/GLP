@@ -4,7 +4,9 @@ import './RoleSelector.css';
 
 function RoleSelector({ onAdminClick }) {
     const navigate = useNavigate(); // Hook for navigation
-
+    const handleAdminClick = () => {
+        navigate('/AdminLogin'); // Redirect to the student page
+    };
     const handleStudentClick = () => {
         navigate('/formulate'); // Redirect to the student page
     };
@@ -12,7 +14,7 @@ function RoleSelector({ onAdminClick }) {
     return (
         <div className="role-selector">
             <button
-                onClick={onAdminClick} // Navigate to the admin page
+                onClick={handleAdminClick} // Navigate to the admin page
                 className="role-button admin-button"
             >
                 <span className="role-label">Admin</span>

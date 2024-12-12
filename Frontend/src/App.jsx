@@ -5,6 +5,8 @@ import DemandeForm from './Components/DemandeForm.jsx';
 import ReclamationForm from './Components/ReclamationForm.jsx';
 import AboutUs from './Components/AboutUs.jsx';
 import ContactUs from './Components/ContactUs.jsx';
+import AdminLogin from './Components/AdminLogin';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -12,6 +14,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<LandingPage />} />
+                
                 <Route path="/formulate" element={<Formulate />}>
                     <Route path="demande" element={<DemandeForm />} />
                     <Route path="reclamation" element={<ReclamationForm />} />
@@ -19,7 +22,9 @@ function App() {
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/contact" element={<ContactUs />} />
                 {/* Add other routes as needed */}
+                <Route path="/AdminLogin" element={<AdminLogin />} />
                 <Route path="*" element={<LandingPage />} />
+
             </Routes>
         </Router>
     );

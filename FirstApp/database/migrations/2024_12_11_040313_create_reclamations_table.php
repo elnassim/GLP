@@ -14,6 +14,7 @@ class CreateReclamationsTable extends Migration
         Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->string('sujet');
             $table->text('description');
             $table->timestamps();
         });

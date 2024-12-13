@@ -1,13 +1,14 @@
 // ContactUs.jsx
 import React from "react";
 import "./ContactUs.css";
-
+import Navbar from './Navbar.jsx';
 function ContactUs() {
   return (
     <div className="contactus-page">
+      
       {/* Background section */}
       <div className="contactus-background"></div>
-
+      {<Navbar />}
       {/* Main content */}
       <div className="contactus-container">
         <div className="contactus-header">

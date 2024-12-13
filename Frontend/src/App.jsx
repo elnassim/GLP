@@ -1,12 +1,13 @@
 import React from 'react';
 import LandingPage from './Components/LandingPage.jsx';
-import Formulate from './Components/Formulate.jsx';
-import FormulateSelection from './Components/FormulateSelection.jsx';
-import DemandeForm from './Components/DemandeForm.jsx';
-import ReclamationForm from './Components/ReclamationForm.jsx';
+import Formulate from './Components/Student/Formulate.jsx';
+import FormulateSelection from './Components/Student/FormulateSelection.jsx';
+import DemandeForm from './Components/Student/DemandeForm.jsx';
+import ReclamationForm from './Components/Student/ReclamationForm.jsx';
 import AboutUs from './Components/AboutUs.jsx';
 import ContactUs from './Components/ContactUs.jsx';
-import AdminLogin from './Components/AdminLogin';
+import AdminLogin from './Components/Admin/AdminLogin.jsx';
+import AdminDashboard from './Components/Admin/AdminDashboard.jsx';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/contact" element={<ContactUs />} />
                 {/* Add other routes as needed */}
                 <Route path="/AdminLogin" element={<AdminLogin />} />
+                <Route path="/admin-dashboard" element={<AdminDashboard />} />
                 <Route path="*" element={<LandingPage />} />
 
             </Routes>

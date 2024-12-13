@@ -1,0 +1,86 @@
+.admin-dashboard {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.stats-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stats-card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 1rem;
+    flex: 1 1 22%; /* Adjusted to fit four cards in a row */
+    max-width: 22%; /* Adjusted to fit four cards in a row */
+    text-align: center;
+    color: #333; /* Ensure text color is visible */
+}
+
+.stats-card.blue {
+    border-left: 5px solid #3b82f6;
+    background-color: #e0f2fe; /* Light blue background */
+}
+
+.stats-card.green {
+    border-left: 5px solid #10b981;
+    background-color: #d1fae5; /* Light green background */
+}
+
+.stats-card.yellow {
+    border-left: 5px solid #fbbf24;
+    background-color: #fef3c7; /* Light yellow background */
+}
+
+.stats-card.red {
+    border-left: 5px solid #ef4444;
+    background-color: #fee2e2; /* Light red background */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
+.card-body h4 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.card-body p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Ensure responsive design */
+@media (max-width: 1200px) {
+    .stats-card {
+        flex: 1 1 45%; /* Two cards per row on medium screens */
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-card {
+        flex: 1 1 100%; /* One card per row on small screens */
+        max-width: 100%;
+    }
+}

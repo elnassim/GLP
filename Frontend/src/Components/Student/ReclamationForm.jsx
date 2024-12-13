@@ -1,7 +1,7 @@
 // Frontend/src/Components/ReclamationForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api';
+import api from '../../api';
 import './ReclamationForm.css'; // Import the custom CSS
 
 function ReclamationForm() {

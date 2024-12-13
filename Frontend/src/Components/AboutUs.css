@@ -22,8 +22,9 @@
 }
 
 .aboutus-container {
-    max-width: 1200px; /* Augmentez la largeur maximale */
-    padding: 3rem;     /* Ajoutez plus de padding pour rendre la section plus spacieuse */
+    margin-top: 85px;
+    max-width: 1000px; /* Augmentez la largeur maximale */
+    padding: 1rem;     /* Ajoutez plus de padding pour rendre la section plus spacieuse */
     background: linear-gradient(145deg, #f0f4ff, #dfe8ff);
     border-radius: 1rem;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);

@@ -22,8 +22,8 @@
 }
 
 .contactus-container {
-    max-width: 1200px;
-    padding: 3rem;
+    max-width: 800px;
+    padding: 1rem;
     background: linear-gradient(145deg, #f0f4ff, #dfe8ff);
     border-radius: 1rem;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);

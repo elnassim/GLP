@@ -74,3 +74,13 @@
 .demande-back-button:hover {
     background-color: #4b5563;
 }
+
+.success-message {
+    color: green;
+    margin-top: 1rem;
+}
+
+.error-message {
+    color: red;
+    margin-top: 1rem;
+}

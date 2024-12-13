@@ -2,7 +2,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import './Formulate.css';
-import Navbar from './Navbar.jsx';
+import Navbar from '../Navbar.jsx';
 
 function Formulate() {
 

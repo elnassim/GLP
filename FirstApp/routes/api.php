@@ -10,3 +10,9 @@ Route::post('/demande', [DemandeController::class, 'store']);
 
 // Routes for Reclamation
 Route::post('/reclamation', [ReclamationController::class, 'store']);
+
+
+Route::get('/test', function () {
+    return response()->json(['message' => 'API is working']);
+});
+

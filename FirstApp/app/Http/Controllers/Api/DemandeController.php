@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Demande; // Ensure you've created this model
 use Illuminate\Support\Facades\Validator;
+use App\Models\Student;
 
 class DemandeController extends Controller
 {
@@ -28,6 +29,16 @@ class DemandeController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
+        $studentExists = Student::where('email', $request->email)
+        ->where('cin', $request->cin)
+        ->where('apogee', $request->apogee)
+        ->exists();
+
+    if (!$studentExists) {
+        return response()->json([
+            'error' => 'Les informations fournies ne correspondent à aucun étudiant existant.',
+        ], 404);
+    }
     
         try {
             $demande = Demande::create($validator->validated());

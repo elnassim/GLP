@@ -32,7 +32,7 @@
 
 /* Footer reste centré */
 .footer {
-    background-color: #1e3a8a;
+  
     color: #ffffff;
     text-align: center;
     padding: 1.25rem 3rem;
@@ -48,9 +48,7 @@
     transition: color 0.3s;
 }
 
-.footer .social-media a:hover {
-    color: #1d4ed8;
-}
+
 
 /* Styles responsives */
 @media (max-width: 768px) {

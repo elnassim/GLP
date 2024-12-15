@@ -10,11 +10,11 @@
 .info-title {
     font-size: 2rem;
     margin-bottom: 1.25rem; /* Equivalent to mb-5 */
-    color: #1e3a8a; /* Customize as needed */
+ 
 }
 
 .info-content {
     font-size: 1rem;
-    color: #4b5563; /* Equivalent to text-gray-600 */
+ 
     line-height: 1.6;
 }

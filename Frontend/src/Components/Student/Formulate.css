@@ -64,7 +64,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Couche semi-transparente */
+   
     z-index: 0; /* Derrière le contenu */
 }
 .formulate-option-button {

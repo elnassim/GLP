@@ -11,9 +11,9 @@
     overflow: hidden;
     font-size: 0.875rem; /* Equivalent to text-sm */
     font-weight: 500;
-    color: #1f2937; /* Equivalent to text-gray-900 */
+   /* Equivalent to text-gray-900 */
     text-decoration: none;
-    background-image: linear-gradient(to bottom right, #8b5cf6, #3b82f6); /* Equivalent to bg-gradient-to-br from-purple-600 to-blue-500 */
+   /* Equivalent to bg-gradient-to-br from-purple-600 to-blue-500 */
     border-radius: 0.5rem; /* Equivalent to rounded-lg */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to shadow-md */
     transition: background-image 0.3s, color 0.3s;

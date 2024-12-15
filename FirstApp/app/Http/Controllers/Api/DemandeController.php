@@ -29,8 +29,22 @@ class DemandeController extends Controller
             ], 422);
         }
     
+        try {
+            $demande = Demande::create($validator->validated());
+
+            // Return success response with the created record
+            return response()->json([
+                'message' => 'Demande créée avec succès!',
+                'data'    => $demande,
+            ], 201);
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., database errors)
+            return response()->json([
+                'error' => 'Erreur lors de l’insertion des données: ' . $e->getMessage(),
+            ], 500);
+        }
         // If validation passes, return the validated data
-        return response()->json(['validated' => $validator->validated()], 200);
+        //return response()->json(['validated' => $validator->validated()], 200);
     }
     
         

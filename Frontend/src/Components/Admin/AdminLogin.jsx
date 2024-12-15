@@ -1,6 +1,7 @@
 // Frontend/src/Components/AdminLogin.jsx
 import React, { useState } from 'react';
 import './AdminLogin.css';
+import Navbar from '../Navbar.jsx';
 
 function AdminLogin() {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -17,7 +18,9 @@ function AdminLogin() {
     };
 
     return (
+
         <div className="admin-login-page">
+            {<Navbar />}
             <div className="adminlogin-background"></div>
             <div className="login-container">
                 <h2 className="login-title">Admin Login</h2>

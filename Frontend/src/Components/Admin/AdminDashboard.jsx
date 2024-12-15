@@ -2,10 +2,15 @@ import React from 'react';
 import StatsCard from './Card-dash.jsx'; // Import the StatsCard component
 import './AdminDashboard.css'; // Import the custom CSS
 
+import Sidebar from '../Sidebar.jsx';
 function AdminDashboard() {
     return (
         <div className="admin-dashboard">
+            {<Sidebar/>}
+           
+           
             <h1 className="dashboard-title">Admin Dashboard</h1>
+            
             <div className="stats-cards">
                 <StatsCard
                     title="Total Demande"
@@ -38,6 +43,7 @@ function AdminDashboard() {
             </div>
         </div>
     );
+    
 }
 
 export default AdminDashboard;

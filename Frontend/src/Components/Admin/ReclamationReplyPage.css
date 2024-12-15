@@ -1,0 +1,95 @@
+/* Reply to Reclamation Page Styles */
+.reclamation-reply-page {
+    max-width: 700px;
+    margin-left: 350px;
+
+
+    padding: 60px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #ff7f50;
+    margin-bottom: 20px;
+}
+
+.reclamation-details {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.reclamation-details p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+strong {
+    color: #555;
+}
+
+.reply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    resize: none;
+}
+
+textarea:focus {
+    border-color: #ff7f50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 127, 80, 0.5);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #ff7f50;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #ff6f40;
+}
+
+.message {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: green;
+}

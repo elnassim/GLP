@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('apogee_number')->unique();
+            $table->string('apogee')->unique();
             $table->string('cin')->unique();
             $table->timestamps();
         });

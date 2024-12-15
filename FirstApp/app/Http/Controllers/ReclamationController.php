@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reclamation; // Ensure you've created this model
 use Illuminate\Support\Facades\Validator;
+use App\Models\Student;
 
 class ReclamationController extends Controller
 {
@@ -28,6 +29,14 @@ class ReclamationController extends Controller
             ], 422);
         }
 
+        $studentExists = Student::where('email', $request->email)->exists();
+
+        if (!$studentExists) {
+            return response()->json([
+                'error' => 'L\'email fourni n\'existe pas.',
+            ], 404);
+        }
+
         // Create and save the Reclamation
         $reclamation = Reclamation::create($validator->validated());
 
@@ -37,5 +46,27 @@ class ReclamationController extends Controller
             'message' => 'Votre réclamation a été soumise avec succès.',
             'data'    => $reclamation,
         ], 201);
+    }
+
+
+    public function verifyEmail(Request $request)
+    {
+        // Validate the email input
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        // Check if the email exists
+        $exists = Student::where('email', $request->email)->exists();
+
+        return response()->json([
+            'exists' => $exists,
+        ], 200);
     }
 }

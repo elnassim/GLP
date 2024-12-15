@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reclamation extends Model
 {
-    //
+    protected $fillable = [
+        'email',
+        'sujet',
+        'description',
+    ];
 }

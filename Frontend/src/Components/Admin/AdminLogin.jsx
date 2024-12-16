@@ -4,7 +4,7 @@ import Navbar from '../Navbar.jsx';
 import api from '../../api'; // Assurez-vous que cette importation est correcte
 
 function AdminLogin() {
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState('');
 
@@ -19,11 +19,11 @@ function AdminLogin() {
         setSuccess('');
 
         try {
-            const response = await api.post('/admin/login', credentials); // Remplacez par votre endpoint
+            const response = await api.post('/login', credentials); // Remplacez par votre endpoint
             setSuccess(response.data.message);
 
             // Réinitialiser les champs si nécessaire
-            setCredentials({ username: '', password: '' });
+            setCredentials({ email: '', password: '' });
 
             // Redirection ou actions supplémentaires
             // Exemple : navigate('/admin/dashboard');

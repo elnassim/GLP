@@ -16,7 +16,7 @@ class CreateDemandesTable extends Migration
             $table->string('email');
             $table->string('apogee');
             $table->string('cin');
-            $table->string('document');
+            $table->string('document_type');
             $table->text('autres')->nullable();
             $table->timestamps();
         });

@@ -1,86 +1,83 @@
-/* Frontend/src/Components/DemandeForm.css */
-
-.demande-form {
+/* Center the form container */
+.demande-form-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
 }
 
-.demande-title {
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    color: #1e3a8a;
-    text-align: center;
+/* Form container */
+.demande-form {
+    width: 99%;
+    max-width: 400px; /* Reduce width */
+    padding: 15px; /* Smaller padding */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem; /* Smaller font size */
 }
 
-.demande-label {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #1f2937;
-}
-
-.demande-input,
-.demande-select,
-.demande-textarea {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    color: #1f2937;
+/* Input and Textarea styles */
+.demande-form input,
+.demande-form textarea {
     width: 100%;
-    box-sizing: border-box;
+    padding: 8px; /* Smaller padding */
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem; /* Smaller font size */
 }
 
-.demande-input:focus,
-.demande-select:focus,
-.demande-textarea:focus {
-    border-color: #3b82f6;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-}
-
-.demande-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
+/* Button styles */
 .demande-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 15px;
 }
 
 .demande-submit-button,
 .demande-back-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #3b82f6;
-    color: #ffffff;
+    padding: 8px 12px; /* Smaller buttons */
+    font-size: 0.85rem; /* Smaller font size */
     border: none;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    font-weight: 500;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
+.demande-submit-button {
+    background-color: #e5673d;
+    color: white;
+}
+
 .demande-submit-button:hover {
-    background-color: #2563eb;
+    background-color: #f44336;
 }
 
 .demande-back-button {
-    background-color: #6b7280; /* Gray color */
+    background-color: #a0817f;
+    color: white;
 }
 
 .demande-back-button:hover {
-    background-color: #4b5563;
+    background-color: #e53935;
 }
 
+/* Success and Error Messages */
 .success-message {
-    color: green;
-    margin-top: 1rem;
+    color: #4caf50;
+    margin-top: 10px;
+    font-size: 0.85rem; /* Smaller font size */
+    text-align: center;
+}
+
+.error-messages {
+    margin-top: 10px;
 }
 
 .error-message {
-    color: red;
-    margin-top: 1rem;
+    color: #f44336;
+    font-size: 0.85rem; /* Smaller font size */
+    text-align: center;
 }

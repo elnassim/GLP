@@ -44,48 +44,51 @@ function ReclamationForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="reclamation-form">
-            {/* Form Fields */}
-            <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-                required
-            />
-            <input
-                type="text"
-                name="sujet"
-                value={formData.sujet}
-                onChange={handleChange}
-                placeholder="Sujet"
-                required
-            />
-            <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                placeholder="Description"
-                required
-            ></textarea>
-            {/* Buttons */}
-            <div className="reclamation-buttons">
-                <button type="submit" className="reclamation-submit-button">Soumettre</button>
-                <button type="button" className="reclamation-back-button" onClick={() => navigate('/formulate')}>
-                    Retour
-                </button>
-            </div>
-            {/* Success and Error Messages */}
-            {success && <p className="success-message">{success}</p>}
-            {Object.keys(errors).length > 0 && (
-                <div className="error-messages">
-                    {Object.keys(errors).map((key) => (
-                        <p key={key} className="error-message">{errors[key][0]}</p>
-                    ))}
+        <div className="reclamation-form-container">
+            <form onSubmit={handleSubmit} className="reclamation-form">
+                {/* Form Fields */}
+                <h2 className="title">reclamation</h2>
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                    required
+                />
+                <input
+                    type="text"
+                    name="sujet"
+                    value={formData.sujet}
+                    onChange={handleChange}
+                    placeholder="Sujet"
+                    required
+                />
+                <textarea
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    placeholder="Description"
+                    required
+                ></textarea>
+                {/* Buttons */}
+                <div className="reclamation-buttons">
+                    <button type="submit" className="reclamation-submit-button">Soumettre</button>
+                    <button type="button" className="reclamation-back-button" onClick={() => navigate('/formulate')}>
+                        Retour
+                    </button>
                 </div>
-            )}
-        </form>
+                {/* Success and Error Messages */}
+                {success && <p className="success-message">{success}</p>}
+                {Object.keys(errors).length > 0 && (
+                    <div className="error-messages">
+                        {Object.keys(errors).map((key) => (
+                            <p key={key} className="error-message">{errors[key][0]}</p>
+                        ))}
+                    </div>
+                )}
+            </form>
+        </div>
     );
 }
 

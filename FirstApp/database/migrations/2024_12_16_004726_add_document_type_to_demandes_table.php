@@ -4,15 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameApogeeNumberToApogeeInStudentsTable extends Migration
+class AddDocumentTypeToDemandesTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->renameColumn('apogee_number', 'apogee');
+        Schema::table('demandes', function (Blueprint $table) {
+            $table->string('document_type')->after('cin');
         });
     }
 
@@ -21,8 +21,8 @@ class RenameApogeeNumberToApogeeInStudentsTable extends Migration
      */
     public function down(): void
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->renameColumn('apogee', 'apogee_number');
+        Schema::table('demandes', function (Blueprint $table) {
+            $table->dropColumn('document_type');
         });
     }
 }

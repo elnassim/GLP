@@ -9,5 +9,10 @@ class Demande extends Model
     protected $table = 'demandes';
 
     protected $fillable = [
-        'email', 'apogee', 'cin', 'document',];
+        'email',
+        'apogee',
+        'cin',
+        'document_type', // Changed from 'document' to 'document_type'
+        'autres',
+    ];
 }

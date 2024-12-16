@@ -16,19 +16,22 @@ class DemandeController extends Controller
     {
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'email'    => 'required|email',
-            'apogee'   => 'required|string|max:255',
-            'cin'      => 'required|string|max:255',
-            'document' => 'required|string|max:255',
-            'autres'   => 'nullable|string|max:1000',
+            'email'         => 'required|email',
+            'apogee'        => 'required|string|max:255',
+            'cin'           => 'required|string|max:255',
+            'document_type' => 'required|string|in:Attestation de Scolarité,Convention de Stage,Attestation de Réussite',
+            'autres'        => 'nullable|string|max:1000',
         ]);
     
         // Handle validation failures
         if ($validator->fails()) {
+            
             return response()->json([
                 'errors' => $validator->errors(),
             ], 422);
         }
+
+        
         $studentExists = Student::where('email', $request->email)
         ->where('cin', $request->cin)
         ->where('apogee', $request->apogee)

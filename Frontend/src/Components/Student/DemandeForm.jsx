@@ -1,4 +1,4 @@
-// Frontend/src/Components/DemandeForm.jsx
+// Frontend/src/Components/Student/DemandeForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
@@ -9,7 +9,7 @@ function DemandeForm() {
         email: '',
         apogee: '',
         cin: '',
-        document: '',
+        document_type: '', // Changed from 'document' to 'document_type'
         autres: '',
     });
     const [errors, setErrors] = useState({});
@@ -26,6 +26,19 @@ function DemandeForm() {
         setErrors({});
         setSuccess('');
 
+        // Define allowed document types
+        const allowedDocumentTypes = [
+            'Attestation de Scolarité',
+            'Convention de Stage',
+            'Attestation de Réussite',
+        ];
+
+        // Validate selected document type on the client-side
+        if (!allowedDocumentTypes.includes(formData.document_type)) {
+            setErrors({ document_type: ['Type de document invalide.'] });
+            return;
+        }
+
         try {
             const response = await api.post('/demande', formData);
             setSuccess(response.data.message);
@@ -34,7 +47,7 @@ function DemandeForm() {
                 email: '',
                 apogee: '',
                 cin: '',
-                document: '',
+                document_type: '',
                 autres: '',
             });
             // Optionally navigate to a success page
@@ -50,46 +63,90 @@ function DemandeForm() {
 
     return (
         <form onSubmit={handleSubmit} className="demande-form">
-            {/* Form Fields */}
-            <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-                required
-            />
-            <input
-                type="text"
-                name="apogee"
-                value={formData.apogee}
-                onChange={handleChange}
-                placeholder="Numéro d’Apogée"
-                required
-            />
-            <input
-                type="text"
-                name="cin"
-                value={formData.cin}
-                onChange={handleChange}
-                placeholder="CIN"
-                required
-            />
-            <input
-                type="text"
-                name="document"
-                value={formData.document}
-                onChange={handleChange}
-                placeholder="Type de Document"
-                required
-            />
-            <textarea
-                name="autres"
-                value={formData.autres}
-                onChange={handleChange}
-                placeholder="Informations Supplémentaires"
-                maxLength="1000"
-            ></textarea>
+            <h2 className="demande-title">Soumettre une Demande</h2>
+
+            {/* Email Field */}
+            <div className="form-group">
+                <label htmlFor="email" className="demande-label">Adresse Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Votre email"
+                    className="demande-input"
+                    required
+                />
+                {errors.email && <p className="error-message">{errors.email[0]}</p>}
+            </div>
+
+            {/* Apogee Field */}
+            <div className="form-group">
+                <label htmlFor="apogee" className="demande-label">Numéro d’Apogée</label>
+                <input
+                    type="text"
+                    name="apogee"
+                    id="apogee"
+                    value={formData.apogee}
+                    onChange={handleChange}
+                    placeholder="Votre code Apogee"
+                    className="demande-input"
+                    required
+                />
+                {errors.apogee && <p className="error-message">{errors.apogee[0]}</p>}
+            </div>
+
+            {/* CIN Field */}
+            <div className="form-group">
+                <label htmlFor="cin" className="demande-label">CIN</label>
+                <input
+                    type="text"
+                    name="cin"
+                    id="cin"
+                    value={formData.cin}
+                    onChange={handleChange}
+                    placeholder="Votre CIN"
+                    className="demande-input"
+                    required
+                />
+                {errors.cin && <p className="error-message">{errors.cin[0]}</p>}
+            </div>
+
+            {/* Document Type Field */}
+            <div className="form-group">
+                <label htmlFor="document_type" className="demande-label">Type de Document</label>
+                <select
+                    name="document_type"
+                    id="document_type"
+                    value={formData.document_type}
+                    onChange={handleChange}
+                    className="demande-select"
+                    required
+                >
+                    <option value="">Sélectionnez un type de document</option>
+                    <option value="Attestation de Scolarité">Attestation de Scolarité</option>
+                    <option value="Convention de Stage">Convention de Stage</option>
+                    <option value="Attestation de Réussite">Attestation de Réussite</option>
+                </select>
+                {errors.document_type && <p className="error-message">{errors.document_type[0]}</p>}
+            </div>
+
+            {/* Additional Information Field */}
+            <div className="form-group">
+                <label htmlFor="autres" className="demande-label">Informations Supplémentaires</label>
+                <textarea
+                    name="autres"
+                    id="autres"
+                    value={formData.autres}
+                    onChange={handleChange}
+                    placeholder="Informations Supplémentaires"
+                    maxLength="1000"
+                    className="demande-textarea"
+                ></textarea>
+                {errors.autres && <p className="error-message">{errors.autres[0]}</p>}
+            </div>
+
             {/* Buttons */}
             <div className="demande-buttons">
                 <button type="submit" className="demande-submit-button">Soumettre</button>
@@ -97,15 +154,10 @@ function DemandeForm() {
                     Retour
                 </button>
             </div>
+
             {/* Success and Error Messages */}
             {success && <p className="success-message">{success}</p>}
-            {Object.keys(errors).length > 0 && (
-                <div className="error-messages">
-                    {Object.keys(errors).map((key) => (
-                        <p key={key} className="error-message">{errors[key][0]}</p>
-                    ))}
-                </div>
-            )}
+            {errors.general && <p className="error-message">{errors.general}</p>}
         </form>
     );
 }

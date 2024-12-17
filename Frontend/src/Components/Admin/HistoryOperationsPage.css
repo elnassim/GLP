@@ -1,0 +1,95 @@
+.history-page {
+  display: flex;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  
+  margin-left: 240px;
+}
+
+.history-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #8e2b04;
+  margin-bottom: 30px;
+}
+
+/* Chart Container */
+.chart-container {
+  margin: 20px auto;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Filter Section */
+.filter-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-container label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+.filter-select:focus {
+  border-color: #b9450f;
+  outline: none;
+}
+
+/* Table Styles */
+.table-section {
+  margin: 30px 0;
+}
+
+.table-section h2 {
+  text-align: center;
+  color: #b9450f;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 10px 15px;
+  text-align: center;
+  border: 1px solid #0c0b0b;
+  color: #0c0b0b;
+}
+
+.history-table th {
+  background-color: #b9450f;
+  color: #fff;
+  font-weight: bold;
+}
+
+.history-table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.history-table tr:hover {
+  background-color: #ffd699;
+  cursor: pointer;
+}

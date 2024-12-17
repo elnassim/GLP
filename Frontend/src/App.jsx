@@ -15,6 +15,8 @@ import RequestsPage from './Components/Admin/RequestsPage.jsx';
 import ChangePasswordPage from './Components/Admin/ChangePasswordPage.jsx'
 import ReclamationPage from './Components/Admin/ReclamationPage.jsx'
 import ReclamationReplyPage from './Components/Admin/ReclamationReplyPage.jsx'
+import HistoryOperationsPage from './Components/Admin/HistoryOperationsPage.jsx';
+
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -39,7 +41,7 @@ function App() {
                 <Route path="/demandes" element={<RequestsPage />} />
                 <Route path="/reclamation" element={<ReclamationPage />} />
                 <Route path="/reclamation/:id" element={<ReclamationReplyPage />} />
-
+                <Route path="/History" element={<HistoryOperationsPage/>} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="*" element={<LandingPage />} />
 

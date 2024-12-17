@@ -48,4 +48,45 @@ class ReclamationController extends Controller
             'data'    => $reclamation,
         ], 201);
     }
+
+    public function getUnrepliedReclamations()
+    {
+        $unrepliedReclamations = Reclamation::where('replied', false)->get();
+
+        return response()->json([
+            'data' => $unrepliedReclamations,
+        ], 200);
+    }
+
+
+    public function replyToReclamation($id, Request $request)
+    {
+        $reclamation = Reclamation::find($id);
+
+        if (!$reclamation) {
+            return response()->json(['message' => 'Reclamation not found.'], 404);
+        }
+
+        // Validate the reply content
+        $validator = Validator::make($request->all(), [
+            'reply' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        // Here you can implement the logic to store the reply,
+        // such as creating a Reply model or sending an email.
+
+        // For simplicity, we'll mark the reclamation as replied.
+        $reclamation->replied = true;
+        $reclamation->save();
+
+        return response()->json([
+            'message' => 'Reclamation replied successfully.',
+        ], 200);
+    }
 }

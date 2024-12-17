@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import LandingPage from './Components/LandingPage.jsx';
 import Formulate from './Components/Student/Formulate.jsx';
 import FormulateSelection from './Components/Student/FormulateSelection.jsx';
@@ -11,73 +10,40 @@ import AdminLogin from './Components/Admin/AdminLogin.jsx';
 import AdminDashboard from './Components/Admin/AdminDashboard.jsx';
 import Sidebar from './Components/Sidebar.jsx';
 import ProfilePage from './Components/Admin/ProfilePage.jsx';
-import ModifyProfilePage from './Components/Admin/ModifyProfilePage.jsx';
+import ModifyProfilePage from './Components/Admin/ModifyProfilePage';
 import RequestsPage from './Components/Admin/RequestsPage.jsx';
-import ChangePasswordPage from './Components/Admin/ChangePasswordPage.jsx';
-import ReclamationPage from './Components/Admin/ReclamationPage.jsx';
-import ReclamationReplyPage from './Components/Admin/ReclamationReplyPage.jsx';
+import ChangePasswordPage from './Components/Admin/ChangePasswordPage.jsx'
+import ReclamationPage from './Components/Admin/ReclamationPage.jsx'
+import ReclamationReplyPage from './Components/Admin/ReclamationReplyPage.jsx'
+
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-    const isAuthenticated = !!localStorage.getItem('authToken');
-
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/Sidebar" element={<Sidebar />} />
+                <Route path="/Sidebar" element={<Sidebar />}></Route>
                 <Route path="/formulate" element={<Formulate />}>
-                    {/* ...existing nested routes... */}
+                <Route index element={<FormulateSelection />} />
+                    <Route path="demande" element={<DemandeForm />} />
+                    <Route path="reclamation" element={<ReclamationForm />} />
                 </Route>
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/contact" element={<ContactUs />} />
-                {/* Admin Routes */}
+                {/* Add other routes as needed */}
                 <Route path="/AdminLogin" element={<AdminLogin />} />
-                <Route 
-                    path="/admin-dashboard" 
-                    element={
-                        isAuthenticated ? <AdminDashboard /> : <Navigate to="/AdminLogin" replace />
-                    } 
-                />
-                <Route 
-                    path="/modify-profile" 
-                    element={
-                        isAuthenticated ? <ModifyProfilePage /> : <Navigate to="/AdminLogin" replace />
-                    }
-                />
-                <Route 
-                    path="/change-password" 
-                    element={
-                        isAuthenticated ? <ChangePasswordPage /> : <Navigate to="/AdminLogin" replace />
-                    }
-                />
-                <Route 
-                    path="/demandes" 
-                    element={
-                        isAuthenticated ? <RequestsPage /> : <Navigate to="/AdminLogin" replace />
-                    }
-                />
-                <Route 
-                    path="/reclamation" 
-                    element={
-                        isAuthenticated ? <ReclamationPage /> : <Navigate to="/AdminLogin" replace />
-                    }
-                />
-                <Route 
-                    path="/reclamation/:id" 
-                    element={
-                        isAuthenticated ? <ReclamationReplyPage /> : <Navigate to="/AdminLogin" replace />
-                    }
-                />
-                <Route 
-                    path="/profile" 
-                    element={
-                        isAuthenticated ? <ProfilePage /> : <Navigate to="/AdminLogin" replace />
-                    }
-                />
-                {/* Fallback Route */}
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="/admin-dashboard" element={<AdminDashboard />} />
+                <Route path="/modify-profile" element={<ModifyProfilePage />} />
+                <Route path="/change-password" element={<ChangePasswordPage />} />
+                <Route path="/demandes" element={<RequestsPage />} />
+                <Route path="/reclamation" element={<ReclamationPage />} />
+                <Route path="/reclamation/:id" element={<ReclamationReplyPage />} />
+
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="*" element={<LandingPage />} />
+
             </Routes>
         </Router>
     );

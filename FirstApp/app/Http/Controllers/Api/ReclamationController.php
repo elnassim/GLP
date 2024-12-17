@@ -48,4 +48,5 @@ class ReclamationController extends Controller
             'data'    => $reclamation,
         ], 201);
     }
+
 }

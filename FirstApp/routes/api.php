@@ -18,6 +18,12 @@ Route::put('/demandes/{id}/refuse', [DemandeController::class, 'refuseDemande'])
 Route::post('/reclamation', [ReclamationController::class, 'store']);
 
 
+Route::get('/reclamations/unreplied', [ReclamationController::class, 'getUnrepliedReclamations'])->middleware('auth:api');
+
+// Route to reply to a reclamation
+Route::post('/reclamations/{id}/reply', [ReclamationController::class, 'replyToReclamation'])->middleware('auth:api');
+
+
 Route::get('/test', function () {
     return response()->json(['message' => 'API is working']);
 });

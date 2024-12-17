@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StatsCard from './Card-dash.jsx'; // Import the StatsCard component
 import './AdminDashboard.css'; // Import the custom CSS
 
 import Sidebar from '../Sidebar.jsx';
 function AdminDashboard() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            navigate('/AdminLogin');
+        }
+    }, [navigate]);
     return (
         <div className="admin-dashboard">
             {<Sidebar/>}

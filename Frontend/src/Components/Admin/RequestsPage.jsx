@@ -1,55 +1,108 @@
 import React, { useState, useEffect } from "react";
 import "./RequestsPage.css";
 import Sidebar from '../Sidebar.jsx';
-
+import api from '../../api'; // Import the Axios instance
 
 const RequestsPage = () => {
   const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Simulated example data
   useEffect(() => {
-    const fetchedRequests = [
-      { id: 1, studentName: "Ali Ahmed", requestType: "Enrollment Certificate" },
-      { id: 2, studentName: "Sara Lmoujahid", requestType: "Grade Transcript" },
-      { id: 3, studentName: "Mohamed El Amrani", requestType: "Internship Certificate" },
-    ];
-    setRequests(fetchedRequests);
+    const fetchPendingDemandes = async () => {
+      try {
+        const response = await api.get('/demandes/pending');
+        setRequests(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('API Error:', err); // Debugging line
+        setError('Erreur lors de la récupération des demandes.');
+        setLoading(false);
+      }
+    };
+
+    fetchPendingDemandes();
   }, []);
 
-  
-  return (
-   
-    <div className="requests-page">
-         {<Sidebar/>}
+  const handleAction = async (id, action) => {
+    try {
+      await api.put(`/demandes/${id}/${action}`);
+      
+      setRequests(requests.filter(demande => demande.id !== id));
+    } catch (err) {
+      console.error(`Erreur lors de la ${action} de la demande:`, err);
+      alert(`Échec de la ${action} de la demande.`);
+    }
+  };
 
-      <h1 className="title">Student Requests</h1>
+  if (loading) {
+    return (
+      <div className="requests-page">
+        <Sidebar />
+        <div>Chargement des demandes...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="requests-page">
+        <Sidebar />
+        <div>{error}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="requests-page">
+      <Sidebar />
+
+      <h1 className="title">Demandes en attente</h1>
 
       {/* Requests Table */}
       <table className="requests-table">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Student Name</th>
-            <th>Request Type</th>
+            <th>Email</th>
+            <th>Apogée</th>
+            <th>CIN</th>
+            <th>Type de Document</th>
+            <th>Informations Supplémentaires</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {requests.map((request) => (
-            <tr key={request.id}>
-              <td>{request.id}</td>
-              <td>{request.studentName}</td>
-              <td>{request.requestType}</td>
-              <td>
-               <button 
-    className="process-button" 
-    onClick={() => window.location.href = '.'}
->
-   Process
-</button>
-              </td>
+          {requests.length > 0 ? (
+            requests.map((demande) => (
+              <tr key={demande.id}>
+                <td>{demande.id}</td>
+                <td>{demande.email}</td>
+                <td>{demande.apogee}</td>
+                <td>{demande.cin}</td>
+                <td>{demande.document_type}</td>
+                <td>{demande.autres}</td>
+                <td>
+                  <button 
+                    className="accept-button" 
+                    onClick={() => handleAction(demande.id, 'accept')}
+                  >
+                    Accepter
+                  </button>
+                  <button 
+                    className="refuse-button" 
+                    onClick={() => handleAction(demande.id, 'refuse')}
+                  >
+                    Refuser
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="7">Aucune demande en attente.</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

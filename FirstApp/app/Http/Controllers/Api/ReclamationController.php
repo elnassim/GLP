@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Reclamation;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Student;
+use Illuminate\Http\JsonResponse;
 
 class ReclamationController extends Controller
 {
@@ -48,4 +49,61 @@ class ReclamationController extends Controller
             'data'    => $reclamation,
         ], 201);
     }
+
+     /**
+     * Fetch all reclamations from the database.
+     */
+    public function index(): JsonResponse
+    {
+        try {
+            // Fetch all reclamations with ordering by latest
+            $reclamations = Reclamation::orderBy('created_at', 'desc')->get();
+
+            // Format the response with additional metadata
+            return response()->json([
+                'success' => true,
+                'message' => 'Reclamations retrieved successfully',
+                'data' => $reclamations,
+                'count' => $reclamations->count(),
+            ], 200);
+        } catch (\Exception $e) {
+            // Handle potential errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Error fetching reclamations',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+    public function show($id)
+{
+    $reclamation = Reclamation::find($id);
+
+    if (!$reclamation) {
+        return response()->json(['error' => 'Reclamation not found'], 404);
+    }
+
+    return response()->json(['data' => $reclamation], 200);
+}
+
+public function reply(Request $request, $id)
+{
+    $request->validate([
+        'reply' => 'required|string',
+    ]);
+
+    $reclamation = Reclamation::find($id);
+
+    if (!$reclamation) {
+        return response()->json(['error' => 'Reclamation not found'], 404);
+    }
+
+    // Example: Save reply (extend this as needed)
+    $reclamation->reply = $request->reply;
+    $reclamation->save();
+
+    return response()->json(['message' => 'Reply saved successfully'], 200);
+}
 }

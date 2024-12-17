@@ -1,83 +1,130 @@
-/* Center the form container */
-.demande-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #ffffff;
-}
-
-/* Form container */
+/* General styles for the form */
 .demande-form {
-    width: 99%;
-    max-width: 400px; /* Reduce width */
-    padding: 15px; /* Smaller padding */
-    background-color: white;
+    max-width: 500px; /* Limit the form's width */
+   margin-top: 80px;/* Center the form horizontally and vertically */
+    padding: 30px;
+  
     border-radius: 8px;
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
-    font-size: 0.9rem; /* Smaller font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
 }
 
-/* Input and Textarea styles */
-.demande-form input,
-.demande-form textarea {
-    width: 100%;
-    padding: 8px; /* Smaller padding */
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.9rem; /* Smaller font size */
+/* Title styling */
+.demande-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #4e4343; /* Make title color pop */
 }
 
-/* Button styles */
+/* Form group */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.demande-label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #fff; /* Label text color */
+}
+
+/* Inputs and textarea styling */
+.demande-input, 
+.demande-select, 
+.demande-textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #fff; /* Border color matching the theme */
+    border-radius: 5px;
+    background: #fff;
+    color: #333; /* Darker text for inputs */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.demande-input:focus, 
+.demande-select:focus, 
+.demande-textarea:focus {
+    border-color: #e67320; /* Accent color for focus state */
+    box-shadow: 0 0 4px rgba(255, 165, 0, 0.8);
+}
+
+/* Placeholder styling */
+.demande-input::placeholder, 
+.demande-textarea::placeholder {
+    color: #999; /* Light gray placeholder */
+}
+
+/* Button styling */
 .demande-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.demande-submit-button,
+.demande-submit-button, 
 .demande-back-button {
-    padding: 8px 12px; /* Smaller buttons */
-    font-size: 0.85rem; /* Smaller font size */
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .demande-submit-button {
-    background-color: #e5673d;
-    color: white;
+    background: #fff;
+    color: #b9450f;
 }
 
 .demande-submit-button:hover {
-    background-color: #f44336;
+    background: #ffd699;
+    transform: scale(1.02);
 }
 
 .demande-back-button {
-    background-color: #a0817f;
-    color: white;
+    background: #8e2b04;
+    color: #fff;
 }
 
 .demande-back-button:hover {
-    background-color: #e53935;
+    background: #d45e19;
+    transform: scale(1.02);
 }
 
-/* Success and Error Messages */
-.success-message {
-    color: #4caf50;
-    margin-top: 10px;
-    font-size: 0.85rem; /* Smaller font size */
-    text-align: center;
-}
-
-.error-messages {
-    margin-top: 10px;
-}
-
+/* Error message styling */
 .error-message {
-    color: #f44336;
-    font-size: 0.85rem; /* Smaller font size */
+    font-size: 0.9rem;
+    color: #ff3d3d;
+    margin-top: 5px;
+}
+
+/* Success message styling */
+.success-message {
+    font-size: 1rem;
+    color: #28a745;
     text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .demande-form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .demande-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

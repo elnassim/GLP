@@ -1,75 +1,76 @@
-.requests-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre horizontalement */
-    justify-content: center; /* Centre verticalement */
-    background-color: #f9f9f9;
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
-   margin-left: 300px;
-  
+/* Frontend/src/Components/Admin/RequestsPage.css */
 
-  }
-  
-  /* Titre */
-  .title {
-    font-size: 28px; /* Plus grand pour attirer l'attention */
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #b9450f;
-    text-transform: uppercase; /* Tout en majuscules */
-    letter-spacing: 1px;
-  }
-  
-  /* Tableau des demandes */
-  .requests-table {
-    width: 80%; /* Largeur ajustée pour un look propre */
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px; /* Coins arrondis */
-    overflow: hidden; /* Assure que rien ne dépasse des coins arrondis */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre douce */
-    text-align: left;
-  }
-  
-  .requests-table th,
-  .requests-table td {
-    padding: 16px 20px; /* Espace généreux */
-    border-bottom: 1px solid #ddd; /* Ligne subtile entre les cellules */
-    color: #000;
-  }
-  
-  .requests-table th {
-    background-color: #be4b15; /* Couleur d'en-tête */
-    color: #fff; /* Texte blanc */
-    font-weight: bold;
-    text-transform: uppercase; /* Uniformité des en-têtes */
-  }
-  
-  .requests-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* Fond alterné pour les lignes paires */
-  }
-  
-  .requests-table tr:hover {
-    background-color: #ffe4d0; /* Couleur de survol */
-  }
-  
-  /* Bouton "Traiter" */
-  .process-button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
- 
-  
-  /* Supprime les marges et le padding global */
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-  }
+.requests-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.requests-table th, .requests-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.requests-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.requests-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.requests-table tr:hover {
+  background-color: #ddd;
+}
+
+/* Accept Button */
+.accept-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem;
+  margin: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accept-button:hover {
+  background-color: #45a049;
+}
+
+/* Refuse Button */
+.refuse-button {
+  background-color: #f44336; /* Red */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem;
+  margin: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refuse-button:hover {
+  background-color: #da190b;
+}

@@ -1,11 +1,14 @@
 /* General styles for the form */
 .demande-form {
-    max-width: 500px; /* Limit the form's width */
+
+   width: 500px; /* Limit the form's width */
+
    margin-top: 80px;/* Center the form horizontally and vertically */
     padding: 30px;
   
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
     color: #fff;
 }
 
@@ -15,7 +18,9 @@
     font-size: 1.8rem;
     margin-bottom: 20px;
     font-weight: bold;
-    color: #4e4343; /* Make title color pop */
+
+    color: #e67320; /* Make title color pop */
+
 }
 
 /* Form group */
@@ -28,9 +33,12 @@
 /* Labels */
 .demande-label {
     font-size: 1rem;
+
+    text-align: center;
     font-weight: bold;
     margin-bottom: 8px;
-    color: #fff; /* Label text color */
+    color: #0c0c0c; /* Label text color */
+
 }
 
 /* Inputs and textarea styling */
@@ -39,9 +47,11 @@
 .demande-textarea {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #fff; /* Border color matching the theme */
+
+    border: 1px solid #b9450f; /* Border color matching the theme */
     border-radius: 5px;
-    background: #fff;
+    background: #f9f9f9;
+
     color: #333; /* Darker text for inputs */
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -127,4 +137,6 @@
         flex-direction: column;
         gap: 10px;
     }
+
 }
+

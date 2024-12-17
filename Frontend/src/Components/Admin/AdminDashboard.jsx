@@ -1,11 +1,14 @@
+
 import React from 'react';
 import { Pie, Bar, Line } from 'react-chartjs-2'; // Import Pie, Bar, and Line chart from react-chartjs-2
 import { Chart as ChartJS } from 'chart.js/auto';
+
 import './AdminDashboard.css'; // Import the custom CSS
 
 import Sidebar from '../Sidebar.jsx';
 
 function AdminDashboard() {
+
     // Data for Pie Charts (Requests and Reclamations)
     const totalRequestData = {
         labels: ['Active', 'Completed'],
@@ -105,6 +108,7 @@ function AdminDashboard() {
             },
         ],
     };
+
 
     return (
         <div className="admin-dashboard">

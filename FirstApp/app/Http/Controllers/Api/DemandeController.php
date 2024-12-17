@@ -46,6 +46,11 @@ class DemandeController extends Controller
         try {
             $demande = Demande::create($validator->validated());
 
+            if (!$demande->status) {
+                $demande->status = 'pending';
+                $demande->save();
+            }
+
             // Return success response with the created record
             return response()->json([
                 'message' => 'Demande créée avec succès!',
@@ -61,6 +66,42 @@ class DemandeController extends Controller
         //return response()->json(['validated' => $validator->validated()], 200);
     }
     
-        
+    public function getPendingDemandes()
+{
+    $pendingDemandes = Demande::whereNotIn('status', ['accepted', 'refused'])->get();
+
+    return response()->json([
+        'data' => $pendingDemandes,
+    ], 200);
+}
+
+    public function acceptDemande($id)
+    {
+        $demande = Demande::find($id);
+
+        if (!$demande) {
+            return response()->json(['message' => 'Demande not found.'], 404);
+        }
+
+        $demande->status = 'accepted';
+        $demande->save();
+
+        return response()->json(['message' => 'Demande accepted successfully.'], 200);
+    }
     
+
+
+    public function refuseDemande($id)
+    {
+        $demande = Demande::find($id);
+
+        if (!$demande) {
+            return response()->json(['message' => 'Demande not found.'], 404);
+        }
+
+        $demande->status = 'refused';
+        $demande->save();
+
+        return response()->json(['message' => 'Demande refused successfully.'], 200);
+    }
 }

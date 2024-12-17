@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './AdminLogin.css';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar.jsx';
 import api from '../../api'; // Assurez-vous que cette importation est correcte
 
 function AdminLogin() {
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const navigate = useNavigate();
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState('');
 
@@ -19,17 +21,19 @@ function AdminLogin() {
         setSuccess('');
 
         try {
-            const response = await api.post('/admin/login', credentials); // Remplacez par votre endpoint
+            const response = await api.post('/login', credentials); // Remplacez par votre endpoint
             setSuccess(response.data.message);
-
+            localStorage.setItem('authToken', response.data.token);
             // Réinitialiser les champs si nécessaire
-            setCredentials({ username: '', password: '' });
+            navigate('/admin-dashboard');
 
             // Redirection ou actions supplémentaires
             // Exemple : navigate('/admin/dashboard');
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 setErrors(error.response.data.errors);
+            } else if (error.response && error.response.data.error) {
+                setErrors({ general: error.response.data.error });
             } else {
                 setErrors({ general: 'Une erreur est survenue. Veuillez réessayer.' });
             }
@@ -44,14 +48,14 @@ function AdminLogin() {
                 <h2 className="login-title">Admin Login</h2>
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="email">email</label>
                         <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={credentials.username}
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={credentials.email}
                             onChange={handleInputChange}
-                            placeholder="Enter your username"
+                            placeholder="Enter your email"
                             required
                         />
                     </div>

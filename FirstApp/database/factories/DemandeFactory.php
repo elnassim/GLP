@@ -16,6 +16,11 @@ class DemandeFactory extends Factory
             'Convention de Stage',
             'Attestation de Réussite',
         ];
+        $statuses = [
+            'pending',
+            'accepted',
+            'refused',
+        ];
 
         return [
             'email'        => $this->faker->unique()->safeEmail,
@@ -23,6 +28,7 @@ class DemandeFactory extends Factory
             'cin'          => $this->faker->unique()->regexify('L[0-9]{6}'),
             'document_type'=> $this->faker->randomElement($documentTypes),
             'autres'       => $this->faker->optional()->sentence,
+            'status'        => 'pending',
         ];
     }
 }

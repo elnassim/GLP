@@ -17,23 +17,9 @@ class AdministratorSeeder extends Seeder
         // Insert default administrator data
         DB::table('administrators')->insert([
             [
-                'name' => 'Admin One',
-                'email' => 'admin1@example.com',
-                'password' => 'password123', 
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Admin Two',
-                'email' => 'admin2@example.com',
-                'password' => 'password123', // Another default admin
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Super Admin',
-                'email' => 'superadmin@example.com',
-                'password' =>'superpassword', // Stronger password for super admin
+                'name' => 'nassim el kaddaoui',
+                'email' => 'elkaddaouinassim@gmail.com',
+                'password' => 'nassim123', 
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

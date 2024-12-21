@@ -13,7 +13,8 @@ class Reclamation extends Model
         'email',
         'sujet',
         'description',
-        'replied',
+        'status',
+        'response',
         // Add other fields as necessary
     ];
 

@@ -1,64 +1,87 @@
-// Frontend/src/Pages/ReclamationPage.jsx
-import React from 'react';
+// Frontend/src/Components/Admin/ReclamationPage.jsx
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ReclamationPage.css';
+import api from '../../api'; // Ensure this is correctly set up as your Axios instance
 import Sidebar from '../Sidebar.jsx';
+import './ReclamationPage.css'; // Ensure correct path
 
 function ReclamationPage() {
     const navigate = useNavigate();
+    const [reclamations, setReclamations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // Example reclamation data (Replace with API data later)
-    const reclamations = [
-        {
-            id: 1,
-            subject: 'Access Issues',
-            description: 'I am unable to access my student dashboard for the past week.',
-            date: 'December 12, 2024',
-            submittedBy: 'John Doe',
-        },
-        {
-            id: 2,
-            subject: 'Payment Issues',
-            description: 'My payment status shows unpaid despite successful transaction.',
-            date: 'December 10, 2024',
-            submittedBy: 'Jane Smith',
-        },
-        {
-            id: 3,
-            subject: 'Course Enrollment',
-            description: 'Unable to enroll in the mandatory courses for the semester.',
-            date: 'December 8, 2024',
-            submittedBy: 'Alex Johnson',
-        },
-    ];
+    useEffect(() => {
+        const fetchReclamations = async () => {
+            try {
+                const response = await api.get('/reclamations', {
+                    params: { status: 'pending' },
+                });
+                setReclamations(response.data.data);
+                setLoading(false);
+            } catch (err) {
+                console.error('Error fetching reclamations:', err);
+                setError('Failed to load reclamations.');
+                setLoading(false);
+            }
+        };
+
+        fetchReclamations();
+    }, []);
 
     const handleConsultClick = (id) => {
         // Navigate to the reply page for the selected reclamation
-        navigate(`/reclamation/${id}`);
+        navigate(`/reclamation/${id}/reply`);
     };
+
+    if (loading) {
+        return (
+            <div className="reclamation-list-page">
+                <Sidebar />
+                <div>Loading reclamations...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="reclamation-list-page">
+                <Sidebar />
+                <div className="error-message">{error}</div>
+            </div>
+        );
+    }
 
     return (
         <div className="reclamation-list-page">
-             {<Sidebar/>}
-            <h2 className="title">Reclamations</h2>
+            <Sidebar />
+            <h2 className="title">Pending Reclamations</h2>
             <div className="reclamation-list">
-                {reclamations.map((reclamation) => (
-                    <div key={reclamation.id} className="reclamation-card">
-                        <h3 className="reclamation-subject">{reclamation.subject}</h3>
-                        <p className="reclamation-description">
-                            {reclamation.description.slice(0, 100)}...
-                        </p>
-                        <p className="reclamation-meta">
-                            <span>By: {reclamation.submittedBy}</span> | <span>{reclamation.date}</span>
-                        </p>
-                        <button
-                            className="consult-button"
-                            onClick={() => handleConsultClick(reclamation.id)}
-                        >
-                            Consult
-                        </button>
-                    </div>
-                ))}
+                {reclamations.length > 0 ? (
+                    reclamations.map((reclamation) => (
+                        <div key={reclamation.id} className="reclamation-card">
+                            <h3 className="reclamation-subject">{reclamation.sujet}</h3>
+                            <p className="reclamation-description">
+                                {reclamation.description.slice(0, 100)}...
+                            </p>
+                            <p className="reclamation-meta">
+                                <span>By: {reclamation.email}</span> |{' '}
+                                <span>
+                                    {new Date(reclamation.created_at).toLocaleDateString()}
+                                </span>
+                            </p>
+                            <button
+                                className="consult-button"
+                                onClick={() => navigate(`/admin/reclamation/${reclamation.id}/reply`)}
+                            >
+                                Consult
+                            </button>
+                        </div>
+                    ))
+                ) : (
+                    <p>No pending reclamations.</p>
+                )}
             </div>
         </div>
     );

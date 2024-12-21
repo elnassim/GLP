@@ -1,11 +1,13 @@
 <?php
+// FirstApp/app/Http/Controllers/Api/AuthController.php
+
+
 
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Administrator;
-
 
 class AuthController extends Controller
 {
@@ -18,28 +20,32 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Find the administrator by email
-        $admin = Administrator::where('email', $request->email)
-        ->where('password', $request->password)
-        ->exists();
+        // Retrieve the administrator by email
+        $admin = Administrator::where('email', $request->email)->first();
 
-        if($admin){
+        if (!$admin) {
             return response()->json([
-                'message' => 'Login successful',
-                
-            ], 200);
+                'error' => 'Invalid email or password',
+            ], 401);
         }
-    
+
+        // Compare the provided password with the stored password
+        if ($admin->password !== $request->password) {
+            return response()->json([
+                'error' => 'Invalid email or password',
+            ], 401);
+        }
+
+        // Successful login
         return response()->json([
-            'error' => 'Invalid email or password',
-        ], 401);
+            'message' => 'Login successful',
+        ], 200);
     }
 
     // Administrator logout function
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-
+        // Since we're not implementing token-based authentication, simply return a success message
         return response()->json([
             'message' => 'Logout successful',
         ], 200);

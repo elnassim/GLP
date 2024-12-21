@@ -18,6 +18,7 @@ class CreateDemandesTable extends Migration
             $table->string('cin');
             $table->string('document_type');
             $table->text('autres')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ const RequestsPage = () => {
         setRequests(response.data.data);
         setLoading(false);
       } catch (err) {
-        console.error('API Error:', err); // Debugging line
+        console.error('API Error:', err);
         setError('Erreur lors de la récupération des demandes.');
         setLoading(false);
       }
@@ -27,7 +27,7 @@ const RequestsPage = () => {
   const handleAction = async (id, action) => {
     try {
       await api.put(`/demandes/${id}/${action}`);
-      
+
       setRequests(requests.filter(demande => demande.id !== id));
     } catch (err) {
       console.error(`Erreur lors de la ${action} de la demande:`, err);

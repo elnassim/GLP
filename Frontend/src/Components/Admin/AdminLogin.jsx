@@ -1,8 +1,10 @@
+// Frontend/src/Components/Admin/AdminLogin.jsx
+
 import React, { useState } from 'react';
 import './AdminLogin.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar.jsx';
-import api from '../../api'; // Assurez-vous que cette importation est correcte
+import api from '../../api'; // Ensure this path is correct
 
 function AdminLogin() {
     const navigate = useNavigate();
@@ -21,14 +23,11 @@ function AdminLogin() {
         setSuccess('');
 
         try {
-            const response = await api.post('/login', credentials); // Remplacez par votre endpoint
+            const response = await api.post('/login', credentials); // Ensure '/login' is correct
             setSuccess(response.data.message);
-            localStorage.setItem('authToken', response.data.token);
-            // Réinitialiser les champs si nécessaire
+            // Remove token storage since it's not implemented
+            // localStorage.setItem('authToken', response.data.token);
             navigate('/admin-dashboard');
-
-            // Redirection ou actions supplémentaires
-            // Exemple : navigate('/admin/dashboard');
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 setErrors(error.response.data.errors);
@@ -48,7 +47,7 @@ function AdminLogin() {
                 <h2 className="login-title">Admin Login</h2>
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-group">
-                        <label htmlFor="email">email</label>
+                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -58,6 +57,7 @@ function AdminLogin() {
                             placeholder="Enter your email"
                             required
                         />
+                        {errors.email && <p className="error-message">{errors.email}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>

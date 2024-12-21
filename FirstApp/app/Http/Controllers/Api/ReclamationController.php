@@ -49,4 +49,59 @@ class ReclamationController extends Controller
         ], 201);
     }
 
+    public function getReclamationsByStatus(Request $request)
+    {
+        $status = $request->query('status', 'pending'); // Default to 'pending'
+
+        // Validate status input
+        if (!in_array($status, ['pending', 'replied', 'all'])) {
+            return response()->json([
+                'error' => 'Invalid status filter.',
+            ], 400);
+        }
+
+        if ($status === 'all') {
+            $reclamations = Reclamation::all();
+        } else {
+            $reclamations = Reclamation::where('status', $status)->get();
+        }
+
+        return response()->json([
+            'data' => $reclamations,
+        ], 200);
+    }
+
+    public function replyToReclamation(Request $request, $id)
+    {
+        // Validate input
+        $validator = Validator::make($request->all(), [
+            'response' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        // Find the reclamation
+        $reclamation = Reclamation::find($id);
+
+        if (!$reclamation) {
+            return response()->json([
+                'error' => 'Reclamation not found.',
+            ], 404);
+        }
+
+        // Update response and status
+        $reclamation->response = $request->response;
+        $reclamation->status = 'replied';
+        $reclamation->save();
+
+        return response()->json([
+            'message' => 'Reclamation replied successfully.',
+            'data'    => $reclamation,
+        ], 200);
+    }
+
 }

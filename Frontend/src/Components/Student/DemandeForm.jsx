@@ -1,4 +1,3 @@
-// Frontend/src/Components/Student/DemandeForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
@@ -9,7 +8,7 @@ function DemandeForm() {
         email: '',
         apogee: '',
         cin: '',
-        document_type: '', // Changed from 'document' to 'document_type'
+        document_type: '',
         autres: '',
     });
     const [errors, setErrors] = useState({});
@@ -28,9 +27,9 @@ function DemandeForm() {
 
         // Define allowed document types
         const allowedDocumentTypes = [
-            'Certificate of Enrollment',
-            'Internship Agreement',
-            'Certificate of Achievement',
+            'Attestation de Scolarité',
+            'Convention de Stage',
+            'Attestation de Réussite',
         ];
 
         // Validate selected document type on the client-side
@@ -125,9 +124,9 @@ function DemandeForm() {
                     required
                 >
                     <option value="">Select a document type</option>
-                    <option value="Certificate of Enrollment">Certificate of Enrollment</option>
-                    <option value="Internship Agreement">Internship Agreement</option>
-                    <option value="Certificate of Achievement">Certificate of Achievement</option>
+                    <option value="Attestation de Scolarité">Certificate of Enrollment</option>
+                    <option value="Convention de Stage">Internship Agreement</option>
+                    <option value="Attestation de Réussite">Certificate of Achievement</option>
                 </select>
                 {errors.document_type && <p className="error-message">{errors.document_type[0]}</p>}
             </div>

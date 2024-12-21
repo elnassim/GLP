@@ -1,41 +1,39 @@
-/* Reclamation List Page Styles */
 .reclamation-list-page {
-    max-width: 900px;
-   
-    padding: 20px;
-   margin-left: 350px;
+    display: flex;
 }
 
-.title {
-    text-align: center;
-    font-size: 2rem;
-    color: #ff7f50;
-    margin-bottom: 20px;
+.sidebar {
+    width: 250px;
+    /* Other sidebar styles */
+    
 }
 
 .reclamation-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    padding: 50px;
+    width: 100%;
 }
 
 .reclamation-card {
-    width: 300px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    padding: 20px;
+    width: 300px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
 }
 
 .reclamation-card:hover {
+    transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
 }
 
 .reclamation-subject {
@@ -53,7 +51,6 @@
 .reclamation-meta {
     font-size: 0.8rem;
     color: #999;
-    text-align: right;
     margin-bottom: 15px;
 }
 
@@ -66,9 +63,15 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .consult-button:hover {
     background-color: #ff6f40;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
 }

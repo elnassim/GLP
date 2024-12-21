@@ -3,69 +3,103 @@ import "./HistoryOperationsPage.css";
 import Sidebar from "../Sidebar";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
-import api from "../../api"; // Assuming you have an Axios instance set up
+import api from "../../api"; // Axios instance
 
 function HistoryOperationsPage() {
   const [operations, setOperations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [requestFilter, setRequestFilter] = useState("All");
-  const [reclamationFilter, setReclamationFilter] = useState("All");
+  const [reclamations, setReclamations] = useState([]);
+  const [loadingOperations, setLoadingOperations] = useState(true);
+  const [loadingReclamations, setLoadingReclamations] = useState(true);
+  const [filterRequests, setFilterRequests] = useState("All");
+  const [filterReclamations, setFilterReclamations] = useState("All");
+  const [errorOperations, setErrorOperations] = useState(null);
+  const [errorReclamations, setErrorReclamations] = useState(null);
 
   useEffect(() => {
     const fetchOperations = async () => {
       try {
-        const response = await api.get("/operations"); // Replace with your actual API endpoint
-        setOperations(response.data);
-        setLoading(false);
+        const response = await api.get("/operations");
+        setOperations(response.data.data);
+        setLoadingOperations(false);
       } catch (error) {
         console.error("Error fetching operations:", error);
-        setLoading(false);
+        setErrorOperations("Failed to fetch operations.");
+        setLoadingOperations(false);
+      }
+    };
+
+    const fetchReclamations = async () => {
+      try {
+        const response = await api.get("/reclamations");
+        setReclamations(response.data.data);
+        setLoadingReclamations(false);
+      } catch (error) {
+        console.error("Error fetching reclamations:", error);
+        setErrorReclamations("Failed to fetch reclamations.");
+        setLoadingReclamations(false);
       }
     };
 
     fetchOperations();
+    fetchReclamations();
   }, []);
 
-  // Filters
-  const requestOperations = operations.filter((op) =>
-    ["Accepted Request", "Pending Request", "Rejected Request"].includes(op.type)
-  );
-  const reclamationOperations = operations.filter((op) =>
-    ["Reclamation Treated", "Pending Reclamation"].includes(op.type)
-  );
-
-  const filteredRequests =
-    requestFilter === "All"
-      ? requestOperations
-      : requestOperations.filter((op) => op.type === requestFilter);
-
-  const filteredReclamations =
-    reclamationFilter === "All"
-      ? reclamationOperations
-      : reclamationOperations.filter((op) => op.type === reclamationFilter);
-
-  // Chart Data
+  // Prepare Chart Data
   const chartData = {
-    labels: ["Accepted Requests", "Pending Requests", "Rejected Requests", "Reclamations Treated", "Pending Reclamations"],
+    labels: [
+      "Accepted Requests",
+      "Refused Requests",
+      "Pending Requests",
+      "Replied Claims",
+      "Pending Claims",
+    ],
     datasets: [
       {
-        label: "Operations Summary",
+        label: "Counts",
         data: [
-          requestOperations.filter((op) => op.type === "Accepted Request").length,
-          requestOperations.filter((op) => op.type === "Pending Request").length,
-          requestOperations.filter((op) => op.type === "Rejected Request").length,
-          reclamationOperations.filter((op) => op.type === "Reclamation Treated").length,
-          reclamationOperations.filter((op) => op.type === "Pending Reclamation").length,
+          operations.filter((op) => op.status === "accepted").length,
+          operations.filter((op) => op.status === "refused").length,
+          operations.filter((op) => op.status === "pending").length,
+          reclamations.filter((rec) => rec.status === "replied").length,
+          reclamations.filter((rec) => rec.status === "pending").length,
         ],
-        backgroundColor: ["#b9450f", "#ffd699", "#ff6666", "#b9450f", "#ffd699"],
-        hoverBackgroundColor: "#8e2b04",
+        backgroundColor: [
+          "#4caf50", // Accepted
+          "#f44336", // Refused
+          "#ffeb3b", // Pending
+          "#2196f3", // Replied Claims
+          "#ff9800", // Pending Claims
+        ],
+        hoverBackgroundColor: [
+          "#388e3c",
+          "#d32f2f",
+          "#fdd835",
+          "#1976d2",
+          "#fb8c00",
+        ],
       },
     ],
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // Handle Filters
+  const handleFilterRequestsChange = (e) => {
+    setFilterRequests(e.target.value);
+  };
+
+  const handleFilterReclamationsChange = (e) => {
+    setFilterReclamations(e.target.value);
+  };
+
+  // Filtered Data
+  const filteredOperations =
+    filterRequests === "All"
+      ? operations
+      : operations.filter((op) => op.status === filterRequests.toLowerCase());
+
+  const filteredReclamations =
+    filterReclamations === "All"
+      ? reclamations
+      : reclamations.filter((rec) => rec.status === filterReclamations.toLowerCase());
 
   return (
     <div className="history-page">
@@ -75,84 +109,153 @@ function HistoryOperationsPage() {
 
         {/* Chart Section */}
         <div className="chart-container">
-          <Bar data={chartData} />
+          <Bar
+            data={chartData}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: (tooltipItem) => {
+                      return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                    },
+                  },
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            }}
+          />
         </div>
 
-        {/* Requests Table */}
-        <div className="table-section">
-          <h2>Requests Table</h2>
-          <div className="filter-container">
-            <label htmlFor="request-filter">Filter Requests: </label>
+        {/* Filters Section */}
+        <div className="filters-container">
+          <div className="filter-section">
+            <h3>Filter Requests</h3>
             <select
-              id="request-filter"
-              value={requestFilter}
-              onChange={(e) => setRequestFilter(e.target.value)}
+              value={filterRequests}
+              onChange={handleFilterRequestsChange}
               className="filter-select"
             >
               <option value="All">All</option>
-              <option value="Accepted Request">Accepted</option>
-              <option value="Pending Request">Pending</option>
-              <option value="Rejected Request">Rejected</option>
+              <option value="accepted">Accepted</option>
+              <option value="refused">Refused</option>
+              <option value="pending">Pending</option>
             </select>
           </div>
-          <table className="history-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Operation Type</th>
-                <th>Description</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredRequests.map((operation, index) => (
-                <tr key={operation.id || index}>
-                  <td>{index + 1}</td>
-                  <td>{operation.type}</td>
-                  <td>{operation.description}</td>
-                  <td>{operation.date}</td>
+
+          <div className="filter-section">
+            <h3>Filter Reclamations</h3>
+            <select
+              value={filterReclamations}
+              onChange={handleFilterReclamationsChange}
+              className="filter-select"
+            >
+              <option value="All">All</option>
+              <option value="replied">Replied</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Operations History Table */}
+        <div className="table-section">
+          <h2>Operations History</h2>
+          {loadingOperations ? (
+            <p>Loading operations...</p>
+          ) : errorOperations ? (
+            <p className="error-message">{errorOperations}</p>
+          ) : (
+            <table className="history-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Operation Type</th>
+                  <th>Description</th>
+                  <th>Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredOperations.length > 0 ? (
+                  filteredOperations.map((operation, index) => (
+                    <tr key={operation.id || index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        {operation.status.charAt(0).toUpperCase() +
+                          operation.status.slice(1)}
+                      </td>
+                      <td>
+                        {operation.description ||
+                          operation.autres ||
+                          "N/A"}
+                      </td>
+                      <td>
+                        {operation.date
+                          ? new Date(operation.date).toLocaleDateString()
+                          : operation.created_at
+                          ? new Date(operation.created_at).toLocaleDateString()
+                          : "N/A"}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4">No operations found.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
 
         {/* Reclamations Table */}
         <div className="table-section">
-          <h2>Reclamations Table</h2>
-          <div className="filter-container">
-            <label htmlFor="reclamation-filter">Filter Reclamations: </label>
-            <select
-              id="reclamation-filter"
-              value={reclamationFilter}
-              onChange={(e) => setReclamationFilter(e.target.value)}
-              className="filter-select"
-            >
-              <option value="All">All</option>
-              <option value="Reclamation Treated">Treated</option>
-              <option value="Pending Reclamation">Pending</option>
-            </select>
-          </div>
-          <table className="history-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Operation Type</th>
-                <th>Description</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredReclamations.map((operation, index) => (
-                <tr key={operation.id || index}>
-                  <td>{index + 1}</td>
-                  <td>{operation.type}</td>
-                  <td>{operation.description}</td>
-                  <td>{operation.date}</td>
+          <h2>Reclamations</h2>
+          {loadingReclamations ? (
+            <p>Loading reclamations...</p>
+          ) : errorReclamations ? (
+            <p className="error-message">{errorReclamations}</p>
+          ) : (
+            <table className="history-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Subject</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredReclamations.length > 0 ? (
+                  filteredReclamations.map((rec, index) => (
+                    <tr key={rec.id || index}>
+                      <td>{index + 1}</td>
+                      <td>{rec.sujet}</td>
+                      <td>{rec.description.slice(0, 100)}...</td>
+                      <td>
+                        {rec.status.charAt(0).toUpperCase() +
+                          rec.status.slice(1)}
+                      </td>
+                      <td>
+                        {rec.created_at
+                          ? new Date(rec.created_at).toLocaleDateString()
+                          : "N/A"}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="5">No reclamations found.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

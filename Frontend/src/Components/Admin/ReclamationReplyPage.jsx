@@ -1,3 +1,5 @@
+// filepath: Frontend/src/Components/Admin/ReclamationReplyPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../api';
@@ -16,19 +18,13 @@ function ReclamationReplyPage() {
     useEffect(() => {
         const fetchReclamation = async () => {
             try {
-                const res = await api.get(`/reclamations`, {
-                    params: { status: 'pending' }
-                });
-                const found = res.data.data.find(rec => rec.id === parseInt(id));
-                if (found) {
-                    setReclamation(found);
-                } else {
-                    setError('Reclamation not found or already replied.');
-                }
+                // Fetch the specific reclamation by ID
+                const res = await api.get(`/reclamations/${id}`);
+                setReclamation(res.data.data);
                 setLoading(false);
             } catch (err) {
                 console.error('Error fetching reclamation:', err);
-                setError('Failed to load reclamation.');
+                setError('Reclamation not found or already replied.');
                 setLoading(false);
             }
         };
@@ -47,14 +43,19 @@ function ReclamationReplyPage() {
         }
 
         try {
+            // Use backticks for proper template literal
             const res = await api.post(`/reclamations/${id}/reply`, { response });
             setSuccess(res.data.message);
-            // Optionally, navigate back after a delay
-            setTimeout(() => navigate('/admin/reclamations'), 2000);
+            // Navigate to Reclamations Page after reply
+            navigate('/admin/reclamations');
         } catch (err) {
             console.error('Error replying to reclamation:', err);
             if (err.response && err.response.data.error) {
                 setError(err.response.data.error);
+            } else if (err.response && err.response.data.errors) {
+                // Handle validation errors
+                const validationErrors = err.response.data.errors;
+                setError(Object.values(validationErrors).join(' '));
             } else {
                 setError('Failed to reply to reclamation.');
             }
@@ -70,7 +71,7 @@ function ReclamationReplyPage() {
         );
     }
 
-    if (error) {
+    if (error && !reclamation) {
         return (
             <div className="reclamation-reply-page">
                 <Sidebar />
@@ -84,26 +85,30 @@ function ReclamationReplyPage() {
             <Sidebar />
             <div className="reply-container">
                 <h2 className="title">Respond to Reclamation</h2>
-                <div className="reclamation-details">
-                    <p><strong>Subject:</strong> {reclamation.sujet}</p>
-                    <p><strong>Description:</strong> {reclamation.description}</p>
-                    <p><strong>From:</strong> {reclamation.email}</p>
-                    <p><strong>Date:</strong> {new Date(reclamation.created_at).toLocaleDateString()}</p>
-                </div>
-                <form onSubmit={handleSubmit} className="reply-form">
-                    <label htmlFor="response">Response:</label>
-                    <textarea
-                        id="response"
-                        name="response"
-                        value={response}
-                        onChange={(e) => setResponse(e.target.value)}
-                        required
-                        rows="5"
-                    ></textarea>
-                    <button type="submit" className="submit-button">Send Response</button>
-                </form>
-                {success && <p className="success-message">{success}</p>}
                 {error && <p className="error-message">{error}</p>}
+                {success && <p className="success-message">{success}</p>}
+                {reclamation && (
+                    <>
+                        <div className="reclamation-details">
+                            <p><strong>Subject:</strong> {reclamation.sujet}</p>
+                            <p><strong>Description:</strong> {reclamation.description}</p>
+                            <p><strong>From:</strong> {reclamation.email}</p>
+                            <p><strong>Date:</strong> {new Date(reclamation.created_at).toLocaleDateString()}</p>
+                        </div>
+                        <form onSubmit={handleSubmit} className="reply-form">
+                            <label htmlFor="response">Response:</label>
+                            <textarea
+                                id="response"
+                                name="response"
+                                value={response}
+                                onChange={(e) => setResponse(e.target.value)}
+                                required
+                                rows="5"
+                            ></textarea>
+                            <button type="submit" className="submit-button">Send Response</button>
+                        </form>
+                    </>
+                )}
             </div>
         </div>
     );

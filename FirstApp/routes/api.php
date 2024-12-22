@@ -18,6 +18,7 @@ Route::put('/demandes/{id}/refuse', [DemandeController::class, 'refuseDemande'])
 Route::post('/reclamation', [ReclamationController::class, 'store']);
 
 
+Route::get('/reclamations/{id}', [ReclamationController::class, 'getReclamationById']);
 Route::get('/reclamations', [ReclamationController::class, 'getReclamationsByStatus']);
 
 // Route to reply to a reclamation

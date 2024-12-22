@@ -42,6 +42,7 @@ function App() {
                 <Route path="/demandes" element={<RequestsPage />} />
                 <Route path="/reclamation" element={<ReclamationPage />} />
                 <Route path="/admin/reclamation/:id/reply" element={<ReclamationReplyPage />} />
+                <Route path="/admin/reclamations" element={<ReclamationPage />} />
                 <Route path="/History" element={<HistoryOperationsPage/>} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="*" element={<LandingPage />} />

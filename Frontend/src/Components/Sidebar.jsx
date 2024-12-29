@@ -14,7 +14,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 function Sidebar() {
     const menuItems = [
         { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, link: '/admin-dashboard' },
-        { id: 'profile', label: 'Profile', icon: <PersonIcon />, link: '/profile' },
+       
         { id: 'demandes', label: 'Requests', icon: <FileCopyIcon />, link: '/demandes' },
         { id: 'history', label: 'History', icon: <HistoryIcon />, link: '/history' },
         { id: 'reclamations', label: 'Reclamations', icon: <ReportProblemIcon />, link: '/reclamation' },
@@ -32,11 +32,7 @@ function Sidebar() {
 
             {/* User Profile Section */}
             <div className="profile-section">
-                <img
-                    src="https://via.placeholder.com/80"
-                    alt="User Profile"
-                    className="profile-pic"
-                />
+               
                 <h3 className="profile-name">John Doe</h3>
                 <p className="profile-rol">Administrator</p>
             </div>

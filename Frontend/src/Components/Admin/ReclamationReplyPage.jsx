@@ -84,7 +84,7 @@ function ReclamationReplyPage() {
         <div className="reclamation-reply-page">
             <Sidebar />
             <div className="reply-container">
-                <h2 className="title">Respond to Reclamation</h2>
+                <h2 className="title_rep">Respond to Reclamation</h2>
                 {error && <p className="error-message">{error}</p>}
                 {success && <p className="success-message">{success}</p>}
                 {reclamation && (

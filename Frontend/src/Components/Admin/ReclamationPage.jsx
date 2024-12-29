@@ -56,7 +56,7 @@ function ReclamationPage() {
     return (
         <div className="reclamation-list-page">
             <Sidebar />
-            <h2 className="title">Pending Reclamations</h2>
+            <h2 className="title_rec">Reclamations</h2>
             <div className="reclamation-list">
                 {reclamations.length > 0 ? (
                     reclamations.map((reclamation) => (

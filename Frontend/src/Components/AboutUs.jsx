@@ -14,24 +14,21 @@ function AboutUs() {
            
                 <div className="aboutus-header">
                 
-                    <h1 className="aboutus-title">À Propos de Nous</h1>
+                    <h1 className="aboutus-title">About Us</h1>
                 </div>
                 <div className="aboutus-content">
                     <p>
-                        Nasym est la plateforme officielle, spécialement conçue pour faciliter et accélérer les démarches administratives des étudiants. Ce service, accessible à tous les étudiants, qu'ils soient en début de parcours ou en fin d'études, vous permet de suivre en temps réel l'état de vos demandes.
-                    </p>
+                    Nasym is the official platform specifically designed to facilitate and streamline administrative procedures for students. This service, accessible to all students, whether at the beginning or the end of their studies, allows you to track the status of your requests in real time.                    </p>
                     <p>
-                        Créée pour répondre aux besoins uniques des étudiants, Nasmy simplifie particulièrement les demandes d'attestations et autres documents administratifs essentiels à votre parcours universitaire. Notre objectif principal est de rendre vos démarches administratives plus rapides, plus accessibles et entièrement numériques.
-                    </p>
+                    Created to meet the unique needs of students, Nasym particularly simplifies requests for certificates and other essential administrative documents required for your academic journey. Our primary goal is to make your administrative processes faster, more accessible, and entirely digital.                    </p>
                     
                     <p>
-                        Chez Nasym, nous avons également mis l'accent sur la sécurité de vos informations. Toutes vos données sont traitées avec la plus grande confidentialité et selon des normes de sécurité strictes, pour vous offrir une expérience sereine et fiable.
-                    </p>
+                    At Nasym, we also prioritize the security of your information. All your data is handled with the utmost confidentiality and in compliance with strict security standards, ensuring you a seamless and reliable experience.                    </p>
                      
                 </div>
                 <div className="aboutus-footer">
-                    <p>Contactez-nous : <a href="mailto:contact@universite.com">support@nasym.com</a></p>
-                    <p>© 2024 Nasym. Tous droits réservés.</p>
+                    <p>Contact-Us : <a href="mailto:contact@universite.com">support@nasym.com</a></p>
+                    <p>© 2024 Nasym. All rights reserved.</p>
                 </div>
             </div>
         </div>

@@ -47,7 +47,7 @@ function ReclamationForm() {
         <div className="reclamation-form-container">
             <form onSubmit={handleSubmit} className="reclamation-form">
                 {/* Form Fields */}
-                <h2 className="title">reclamation</h2>
+                <h2 className="title">Reclamation</h2>
                 <input
                     type="email"
                     name="email"
@@ -61,7 +61,7 @@ function ReclamationForm() {
                     name="sujet"
                     value={formData.sujet}
                     onChange={handleChange}
-                    placeholder="Sujet"
+                    placeholder="Subject"
                     required
                 />
                 <textarea
@@ -73,9 +73,9 @@ function ReclamationForm() {
                 ></textarea>
                 {/* Buttons */}
                 <div className="reclamation-buttons">
-                    <button type="submit" className="reclamation-submit-button">Soumettre</button>
+                    <button type="submit" className="reclamation-submit-button">submit</button>
                     <button type="button" className="reclamation-back-button" onClick={() => navigate('/formulate')}>
-                        Retour
+                        Return
                     </button>
                 </div>
                 {/* Success and Error Messages */}

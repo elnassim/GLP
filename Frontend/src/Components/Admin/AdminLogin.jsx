@@ -47,7 +47,7 @@ function AdminLogin() {
                 <h2 className="login-title">Admin Login</h2>
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email"></label>
                         <input
                             type="email"
                             id="email"
@@ -60,7 +60,7 @@ function AdminLogin() {
                         {errors.email && <p className="error-message">{errors.email}</p>}
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password"></label>
                         <input
                             type="password"
                             id="password"
@@ -80,7 +80,7 @@ function AdminLogin() {
                         {Object.keys(errors).map((key) => (
                             <p key={key} className="error-message">{errors[key]}</p>
                         ))}
-                        {errors.general && <p className="error-message">{errors.general}</p>}
+                        
                     </div>
                 )}
             </div>

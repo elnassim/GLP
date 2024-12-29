@@ -28,9 +28,9 @@ function HistoryOperationsPage() {
       }
     };
 
-    const fetchReclamations = async () => {
+    const fetchReclamations = async (status = 'all') => {
       try {
-        const response = await api.get("/reclamations");
+        const response = await api.get("/reclamations", { params: { status } });
         setReclamations(response.data.data);
         setLoadingReclamations(false);
       } catch (error) {
@@ -43,6 +43,8 @@ function HistoryOperationsPage() {
     fetchOperations();
     fetchReclamations();
   }, []);
+
+  
 
   // Prepare Chart Data
   const chartData = {

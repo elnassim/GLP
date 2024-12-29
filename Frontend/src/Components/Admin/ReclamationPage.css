@@ -1,21 +1,35 @@
+/* General Page Layout */
 .reclamation-list-page {
     display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    margin-left: 280px;
 }
 
 .sidebar {
     width: 250px;
-    /* Other sidebar styles */
-    
 }
 
+/* Page Title Styling */
+.title_rec {
+    text-align: center; 
+  font-size: 2.5rem;
+  color: #b9450f;
+  margin-bottom: 30px;
+}
+
+/* Reclamation List Styling */
 .reclamation-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 50px;
+    padding: 30px;
+    justify-content: center;
     width: 100%;
 }
 
+/* Reclamation Card Styling */
 .reclamation-card {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -24,11 +38,10 @@
     padding: 20px;
     width: 300px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
+    text-align: left;
 }
 
 .reclamation-card:hover {
@@ -36,42 +49,66 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Reclamation Card Text */
 .reclamation-subject {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
     color: #333;
     margin-bottom: 10px;
 }
 
 .reclamation-description {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #555;
     margin-bottom: 10px;
+    line-height: 1.4;
 }
 
 .reclamation-meta {
-    font-size: 0.8rem;
-    color: #999;
+    font-size: 0.85rem;
+    color: #777;
     margin-bottom: 15px;
 }
 
+/* Consult Button */
 .consult-button {
     align-self: flex-start;
     padding: 10px 15px;
     font-size: 1rem;
-    color: white;
-    background-color: #ff7f50;
+    color: #fff;
+    background-color: #b9450f;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .consult-button:hover {
-    background-color: #ff6f40;
+    background-color: #a23c0d;
+    transform: scale(1.05);
 }
 
+/* Error Message */
 .error-message {
-    color: red;
+    color: #f44336;
     text-align: center;
-    margin-top: 20px;
+    font-size: 1.2rem;
+    margin: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reclamation-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reclamation-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
 }

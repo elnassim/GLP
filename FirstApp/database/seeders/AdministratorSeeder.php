@@ -22,7 +22,7 @@ class AdministratorSeeder extends Seeder
                 'password' => 'nassim123', 
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
+            ],, 
         ]);
     }
 }

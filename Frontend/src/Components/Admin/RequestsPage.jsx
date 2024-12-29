@@ -8,6 +8,16 @@ const RequestsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Function to translate document types
+  const translateDocumentType = (type) => {
+    const translations = {
+      "Attestation de Scolarité": "Certificate of Enrollment",
+      "Attestation de Réussite": "Certificate of Achievement",
+      "Convention de Stage": "Internship Agreement",
+    };
+    return translations[type] || type; // Return translated type or original if not found
+  };
+
   useEffect(() => {
     const fetchPendingDemandes = async () => {
       try {
@@ -27,7 +37,6 @@ const RequestsPage = () => {
   const handleAction = async (id, action) => {
     try {
       await api.put(`/demandes/${id}/${action}`);
-
       setRequests(requests.filter(demande => demande.id !== id));
     } catch (err) {
       console.error(`Erreur lors de la ${action} de la demande:`, err);
@@ -39,7 +48,7 @@ const RequestsPage = () => {
     return (
       <div className="requests-page">
         <Sidebar />
-        <div>Chargement des demandes...</div>
+        <div>Loading requests...</div>
       </div>
     );
   }
@@ -57,7 +66,7 @@ const RequestsPage = () => {
     <div className="requests-page">
       <Sidebar />
 
-      <h1 className="title">Demandes en attente</h1>
+      <h1 className="title_req">Pending Requests</h1>
 
       {/* Requests Table */}
       <table className="requests-table">
@@ -65,10 +74,10 @@ const RequestsPage = () => {
           <tr>
             <th>ID</th>
             <th>Email</th>
-            <th>Apogée</th>
+            <th>Apogee</th>
             <th>CIN</th>
-            <th>Type de Document</th>
-            <th>Informations Supplémentaires</th>
+            <th>Document Type</th>
+            <th>Additional Information</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -80,27 +89,27 @@ const RequestsPage = () => {
                 <td>{demande.email}</td>
                 <td>{demande.apogee}</td>
                 <td>{demande.cin}</td>
-                <td>{demande.document_type}</td>
+                <td>{translateDocumentType(demande.document_type)}</td>
                 <td>{demande.autres}</td>
                 <td>
                   <button 
                     className="accept-button" 
                     onClick={() => handleAction(demande.id, 'accept')}
                   >
-                    Accepter
+                    Accept
                   </button>
                   <button 
                     className="refuse-button" 
                     onClick={() => handleAction(demande.id, 'refuse')}
                   >
-                    Refuser
+                    Refuse
                   </button>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="7">Aucune demande en attente.</td>
+              <td colSpan="7">No pending requests.</td>
             </tr>
           )}
         </tbody>

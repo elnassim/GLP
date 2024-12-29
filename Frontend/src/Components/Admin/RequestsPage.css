@@ -1,67 +1,110 @@
-.reclamation-reply-page {
-  display: flex;
-}
-
-.sidebar {
-  width: 250px;
-  flex-shrink: 0;
-}
-
-.reply-container {
-  flex: 1;
-  padding: 20px;
-}
-
-.title {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.reclamation-details {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.reply-form {
-  display: flex;
+/* General Page Styles */
+.requests-page {
+  
   flex-direction: column;
+  padding: 20px;
+  background-color: #f9f9f9;
+  height: 100vh;
+  overflow-y: auto;
+  margin-left: 280px;
 }
 
-.reply-form label {
-  margin-bottom: 5px;
+/* Sidebar Styling */
+.sidebar {
+  flex: 1;
+}
+
+/* Title Styling */
+.title_req {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #b9450f;
+  margin-bottom: 100px;
+}
+
+/* Table Styles */
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.requests-table th, 
+.requests-table td {
+  padding: 10px 15px;
+  text-align: center;
+  border: 1px solid #0c0b0b;
+  color: #0c0b0b;
+}
+
+.requests-table th {
+  background-color: #b9450f;
+  color: #fff;
   font-weight: bold;
 }
 
-.reply-form textarea {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  margin-bottom: 15px;
+.requests-table tr:nth-child(even) {
+  background-color: #f5f5f5;
 }
 
-.submit-button {
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 6px;
+.requests-table tr:hover {
+  background-color: #ffe6cc;
   cursor: pointer;
-  font-size: 1rem;
 }
 
-.submit-button:hover {
+
+
+
+/* Button Styles */
+.accept-button, 
+.refuse-button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.accept-button {
+  margin-bottom: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.accept-button:hover {
   background-color: #45a049;
+  transform: scale(1.05);
 }
 
-.success-message {
-  color: green;
-  margin-top: 10px;
+.refuse-button {
+  background-color: #f44336;
+  color: #fff;
 }
 
-.error-message {
-  color: red;
-  margin-top: 10px;
+.refuse-button:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Loading and Error Messages */
+.requests-page > div {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #b9450f;
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .requests-table th, 
+  .requests-table td {
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #0c0b0b;
+    color: #0c0b0b;
+  }
+
+  
 }

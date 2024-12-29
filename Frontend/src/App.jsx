@@ -9,10 +9,7 @@ import ContactUs from './Components/ContactUs.jsx';
 import AdminLogin from './Components/Admin/AdminLogin.jsx';
 import AdminDashboard from './Components/Admin/AdminDashboard.jsx';
 import Sidebar from './Components/Sidebar.jsx';
-import ProfilePage from './Components/Admin/ProfilePage.jsx';
-import ModifyProfilePage from './Components/Admin/ModifyProfilePage';
 import RequestsPage from './Components/Admin/RequestsPage.jsx';
-import ChangePasswordPage from './Components/Admin/ChangePasswordPage.jsx'
 import ReclamationPage from './Components/Admin/ReclamationPage.jsx'
 import ReclamationReplyPage from './Components/Admin/ReclamationReplyPage.jsx'
 import HistoryOperationsPage from './Components/Admin/HistoryOperationsPage.jsx';
@@ -37,14 +34,11 @@ function App() {
                 {/* Add other routes as needed */}
                 <Route path="/AdminLogin" element={<AdminLogin />} />
                 <Route path="/admin-dashboard" element={<AdminDashboard />} />
-                <Route path="/modify-profile" element={<ModifyProfilePage />} />
-                <Route path="/change-password" element={<ChangePasswordPage />} />
                 <Route path="/demandes" element={<RequestsPage />} />
                 <Route path="/reclamation" element={<ReclamationPage />} />
                 <Route path="/admin/reclamation/:id/reply" element={<ReclamationReplyPage />} />
                 <Route path="/admin/reclamations" element={<ReclamationPage />} />
                 <Route path="/History" element={<HistoryOperationsPage/>} />
-                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="*" element={<LandingPage />} />
 
             </Routes>

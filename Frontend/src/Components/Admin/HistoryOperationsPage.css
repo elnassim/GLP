@@ -3,7 +3,7 @@
   background-color: #f9f9f9;
   min-height: 100vh;
   
-  margin-left: 240px;
+  margin-left: 280px;
 }
 
 .history-content {
@@ -12,9 +12,9 @@
 }
 
 .page-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #8e2b04;
+  text-align: center; 
+  font-size: 2.5rem;
+  color: #b9450f;
   margin-bottom: 30px;
 }
 
@@ -35,7 +35,10 @@
   justify-content: center;
   align-items: center;
 }
-
+.filter-section{
+  margin-bottom: 15px;
+  text-align: center;
+}
 .filter-container label {
   margin-right: 10px;
   font-weight: bold;

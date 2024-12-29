@@ -15,5 +15,6 @@ class Demande extends Model
         'document_type', // Changed from 'document' to 'document_type'
         'autres',
         'status',
+        'date',
     ];
 }

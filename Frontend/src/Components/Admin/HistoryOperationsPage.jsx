@@ -30,9 +30,9 @@ function HistoryOperationsPage() {
       }
     };
 
-    const fetchReclamations = async () => {
+    const fetchReclamations = async (status = 'all') => {
       try {
-        const response = await api.get("/reclamations");
+        const response = await api.get("/reclamations", { params: { status } });
         setReclamations(response.data.data);
         setLoadingReclamations(false);
       } catch (error) {
@@ -46,6 +46,7 @@ function HistoryOperationsPage() {
     fetchReclamations();
   }, []);
 
+
   // Function to translate document types
   const translateDocumentType = (type) => {
     const translations = {
@@ -53,6 +54,44 @@ function HistoryOperationsPage() {
       "Attestation de Réussite": "Certificate of Achievement",
     };
     return translations[type] || type; // Return translated type or original if not found
+
+  
+
+  // Prepare Chart Data
+  const chartData = {
+    labels: [
+      "Accepted Requests",
+      "Refused Requests",
+      "Pending Requests",
+      "Replied Claims",
+      "Pending Claims",
+    ],
+    datasets: [
+      {
+        label: "Counts",
+        data: [
+          operations.filter((op) => op.status === "accepted").length,
+          operations.filter((op) => op.status === "refused").length,
+          operations.filter((op) => op.status === "pending").length,
+          reclamations.filter((rec) => rec.status === "replied").length,
+          reclamations.filter((rec) => rec.status === "pending").length,
+        ],
+        backgroundColor: [
+          "#4caf50", // Accepted
+          "#f44336", // Refused
+          "#ffeb3b", // Pending
+          "#2196f3", // Replied Claims
+          "#ff9800", // Pending Claims
+        ],
+        hoverBackgroundColor: [
+          "#388e3c",
+          "#d32f2f",
+          "#fdd835",
+          "#1976d2",
+          "#fb8c00",
+        ],
+      },
+    ],
   };
 
   // Handle Filters

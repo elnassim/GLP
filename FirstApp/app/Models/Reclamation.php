@@ -15,6 +15,7 @@ class Reclamation extends Model
         'description',
         'status',
         'response',
+        'date',
         // Add other fields as necessary
     ];
 

@@ -21,6 +21,7 @@ class DemandeController extends Controller
             'cin'           => 'required|string|max:255',
             'document_type' => 'required|string|in:Attestation de Scolarité,Convention de Stage,Attestation de Réussite',
             'autres'        => 'nullable|string|max:1000',
+            
         ]);
     
         // Handle validation failures

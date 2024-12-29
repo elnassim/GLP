@@ -66,7 +66,7 @@ function DemandeForm() {
 
             {/* Email Field */}
             <div className="form-group">
-                <label htmlFor="email" className="demande-label">Email Address</label>
+                <label htmlFor="email" className="demande-label"></label>
                 <input
                     type="email"
                     name="email"
@@ -82,7 +82,7 @@ function DemandeForm() {
 
             {/* Apogee Field */}
             <div className="form-group">
-                <label htmlFor="apogee" className="demande-label">Apogee Number</label>
+                <label htmlFor="apogee" className="demande-label"></label>
                 <input
                     type="text"
                     name="apogee"
@@ -98,7 +98,7 @@ function DemandeForm() {
 
             {/* CIN Field */}
             <div className="form-group">
-                <label htmlFor="cin" className="demande-label">CIN</label>
+                <label htmlFor="cin" className="demande-label"></label>
                 <input
                     type="text"
                     name="cin"
@@ -111,10 +111,9 @@ function DemandeForm() {
                 />
                 {errors.cin && <p className="error-message">{errors.cin[0]}</p>}
             </div>
-
             {/* Document Type Field */}
             <div className="form-group">
-                <label htmlFor="document_type" className="demande-label">Document Type</label>
+                <label htmlFor="document_type" className="demande-label"></label>
                 <select
                     name="document_type"
                     id="document_type"
@@ -133,7 +132,7 @@ function DemandeForm() {
 
             {/* Additional Information Field */}
             <div className="form-group">
-                <label htmlFor="autres" className="demande-label">Additional Information</label>
+                <label htmlFor="autres" className="demande-label"></label>
                 <textarea
                     name="autres"
                     id="autres"
@@ -150,7 +149,7 @@ function DemandeForm() {
             <div className="demande-buttons">
                 <button type="submit" className="demande-submit-button">Submit</button>
                 <button type="button" className="demande-back-button" onClick={() => navigate('/formulate')}>
-                    Back
+                    Return
                 </button>
             </div>
 

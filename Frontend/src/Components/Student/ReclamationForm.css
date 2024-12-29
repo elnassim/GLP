@@ -3,94 +3,123 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f8f9fa; /* Couleur de fond légèrement grise pour contraster avec le formulaire */
+    min-height: 100vh; 
+    background-color: #fff; 
     padding: 20px;
+    /* Aucune mention de pointer-events, overlay ou z-index */
 }
 
 /* Form container */
 .reclamation-form {
     width: 100%;
-    max-width: 500px; /* Largeur du formulaire un peu plus grande pour plus de confort */
-    padding: 25px; /* Espacement plus grand pour une meilleure lisibilité */
+    max-width: 500px; 
+    padding: 30px;
     background-color: white;
-    border-radius: 10px;
-    font-size: 1rem; /* Taille de police standard pour une meilleure lisibilité */
+    border-radius: 8px;
+    font-size: 1rem; 
+    color: #333; 
+    /* Pas de position absolue ou overlay */
 }
 
 /* Title */
 .reclamation-form .title {
-    font-size: 1.5rem;
+    font-size: 1.8rem; 
     text-align: center;
     margin-bottom: 20px;
-    color:#b9450f; /* Gris foncé pour le titre */
+    color: #e67320; 
+    font-weight: bold;
 }
 
 /* Input and Textarea styles */
 .reclamation-form input,
-.reclamation-form textarea {
-    width: 100%;
-    padding: 12px; /* Espacement plus grand pour un meilleur confort */
-    margin-bottom: 20px; /* Espacement entre les champs */
-    border: 1px solid #ced4da; /* Bordure subtile */
-    border-radius: 8px;
-    font-size: 1rem; /* Taille de police uniforme pour les champs */
+.reclamation-form textarea,
+.reclamation-form select {
+    width: 95.5%;
+    padding: 10px; 
+    margin-bottom: 20px;
+    border: 1px solid #b9450f; 
+    border-radius: 5px;
+    font-size: 1rem;
     font-family: Arial, sans-serif;
-    color: #495057;
+    color: #333;
+    background-color: #f9f9f9; 
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 /* Focus effect */
 .reclamation-form input:focus,
-.reclamation-form textarea:focus {
-    border-color: #495057; /* Bordure plus foncée au focus */
+.reclamation-form textarea:focus,
+.reclamation-form select:focus {
+    border-color: #e67320; 
+    box-shadow: 0 0 4px rgba(255, 165, 0, 0.8); 
     outline: none;
+}
+
+/* Placeholder styling */
+.reclamation-form input::placeholder,
+.reclamation-form textarea::placeholder {
+    color: #999; 
+}
+
+/* Labels */
+.reclamation-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #0c0c0c; 
+    display: block; 
+    text-align: center; 
 }
 
 /* Button styles */
 .reclamation-buttons {
     display: flex;
     justify-content: space-between;
+    gap: 15px; 
     margin-top: 20px;
 }
 
 .reclamation-submit-button,
 .reclamation-back-button {
-    padding: 12px 20px; /* Espacement plus grand pour les boutons */
-    font-size: 1rem; /* Uniformisation de la taille de police */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
     flex: 1;
-    margin: 0 10px; /* Espacement entre les boutons */
+    padding: 10px 15px; 
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 /* Submit button */
 .reclamation-submit-button {
-    background-color: #e5673d;
-    color: white;
+    background: #fff; 
+    color: #b9450f;
 }
 
 .reclamation-submit-button:hover {
-    background-color: #f44336;
+    background: #ffd699;
+    transform: scale(1.02);
 }
 
 /* Back button */
 .reclamation-back-button {
-    background-color: #6c757d;
+    background: #8e2b04;
     color: white;
 }
 
 .reclamation-back-button:hover {
-    background-color: #5a6268;
+    background: #d45e19; 
+    transform: scale(1.02);
 }
 
 /* Success and Error Messages */
 .success-message {
-    color: #28a745;
-    margin-top: 20px;
     font-size: 1rem;
+    color: #28a745;
     text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 .error-messages {
@@ -98,20 +127,27 @@
 }
 
 .error-message {
-    color: #dc3545;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    color: #ff3d3d;
     text-align: center;
+    margin-top: 5px;
 }
 
 /* Responsive Design */
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     .reclamation-form {
-        padding: 20px; /* Ajusté pour les petits écrans */
+        width: 90%;
+        padding: 20px;
+    }
+
+    .reclamation-buttons {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .reclamation-submit-button,
     .reclamation-back-button {
         padding: 10px 15px;
-        font-size: 0.9rem; /* Petite réduction sur les petits écrans */
+        font-size: 0.9rem;
     }
 }

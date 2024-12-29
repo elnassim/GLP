@@ -127,11 +127,11 @@ function HistoryOperationsPage() {
                     reclamations.filter((rec) => rec.status === "pending").length,
                   ],
                   backgroundColor: [
-                    "#4caf50", // Accepted
-                    "#f44336", // Refused
-                    "#ffeb3b", // Pending
-                    "#2196f3", // Replied Claims
-                    "#ff9800", // Pending Claims
+                    "#b9450f", // Accepted
+                    "#8e2b04", // Refused
+                    "#e65c3b", // Pending
+                    "#f2984b", // Replied Claims
+                    "#f5b99b", // Pending Claims
                   ],
                 },
               ],

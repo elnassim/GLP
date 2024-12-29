@@ -32,11 +32,7 @@ function Sidebar() {
 
             {/* User Profile Section */}
             <div className="profile-section">
-                <img
-                    src="https://via.placeholder.com/80"
-                    alt="User Profile"
-                    className="profile-pic"
-                />
+               
                 <h3 className="profile-name">John Doe</h3>
                 <p className="profile-rol">Administrator</p>
             </div>

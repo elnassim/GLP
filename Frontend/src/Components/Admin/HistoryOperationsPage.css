@@ -1,8 +1,8 @@
+/* General Page Styles */
 .history-page {
   display: flex;
   background-color: #f9f9f9;
   min-height: 100vh;
-  
   margin-left: 280px;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .page-title {
-  text-align: center; 
+  text-align: center;
   font-size: 2.5rem;
   color: #b9450f;
   margin-bottom: 30px;
@@ -24,7 +24,7 @@
   max-width: 700px;
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 10px; /* Rounded corners for the chart container */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -35,10 +35,12 @@
   justify-content: center;
   align-items: center;
 }
-.filter-section{
+
+.filter-section {
   margin-bottom: 15px;
   text-align: center;
 }
+
 .filter-container label {
   margin-right: 10px;
   font-weight: bold;
@@ -48,7 +50,7 @@
 .filter-select {
   padding: 8px 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 5px; /* Rounded corners for filter dropdowns */
   font-size: 1rem;
   background-color: #fff;
   color: #333;
@@ -72,13 +74,15 @@
 .history-table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 10px; /* Rounded corners for the table */
+  overflow: hidden; /* Ensure inner elements respect the border-radius */
 }
 
 .history-table th,
 .history-table td {
   padding: 10px 15px;
   text-align: center;
-  border: 1px solid #0c0b0b;
+  border: 1px solid #beb8b8;
   color: #0c0b0b;
 }
 
@@ -95,4 +99,21 @@
 .history-table tr:hover {
   background-color: #ffd699;
   cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .history-table th,
+  .history-table td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .chart-container {
+    max-width: 90%;
+  }
 }

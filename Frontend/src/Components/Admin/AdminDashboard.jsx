@@ -164,6 +164,17 @@ function AdminDashboard() {
             <div className="dashboard-content">
                 <h1 className="dashboard-title">Admin Dashboard</h1>
 
+                  {/* Statistics Summary */}
+                  <div className="statistics-summary">
+                    <h3>Statistics Summary</h3>
+                    <p><strong>Total Demandes:</strong> {demandesData.total}</p>
+                    <p><strong>Pending Demandes:</strong> {demandesData.pending}</p>
+                    <p><strong>Accepted Demandes:</strong> {demandesData.accepted}</p>
+                    <p><strong>Refused Demandes:</strong> {demandesData.refused}</p>
+                    <p><strong>Total Reclamations:</strong> {reclamationsDataStats.total}</p>
+                    <p><strong>Pending Reclamations:</strong> {reclamationsDataStats.pending}</p>
+                    <p><strong>Replied Reclamations:</strong> {reclamationsDataStats.replied}</p>
+                </div>
                 {/* Line Chart */}
                 <div className="charts-container">
                     <div className="chart-card">

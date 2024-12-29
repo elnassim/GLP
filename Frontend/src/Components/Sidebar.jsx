@@ -15,7 +15,7 @@ function Sidebar() {
     const menuItems = [
         { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, link: '/admin-dashboard' },
         { id: 'profile', label: 'Profile', icon: <PersonIcon />, link: '/profile' },
-        { id: 'demandes', label: 'Demandes', icon: <FileCopyIcon />, link: '/demandes' },
+        { id: 'demandes', label: 'Requests', icon: <FileCopyIcon />, link: '/demandes' },
         { id: 'history', label: 'History', icon: <HistoryIcon />, link: '/history' },
         { id: 'reclamations', label: 'Reclamations', icon: <ReportProblemIcon />, link: '/reclamation' },
         { id: 'logout', label: 'Logout', icon: <LogoutIcon />, link: '/logout' },

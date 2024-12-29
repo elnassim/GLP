@@ -16,6 +16,8 @@ class CreateReclamationsTable extends Migration
             $table->string('email');
             $table->string('sujet');
             $table->text('description');
+            $table->string('status')->default('pending');
+            $table->text('response')->nullable()->after('status');
             $table->timestamps();
         });
     }

@@ -1,4 +1,3 @@
-// Frontend/src/Components/Student/DemandeForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
@@ -9,7 +8,7 @@ function DemandeForm() {
         email: '',
         apogee: '',
         cin: '',
-        document_type: '', // Changed from 'document' to 'document_type'
+        document_type: '',
         autres: '',
     });
     const [errors, setErrors] = useState({});
@@ -35,7 +34,7 @@ function DemandeForm() {
 
         // Validate selected document type on the client-side
         if (!allowedDocumentTypes.includes(formData.document_type)) {
-            setErrors({ document_type: ['Type de document invalide.'] });
+            setErrors({ document_type: ['Invalid document type.'] });
             return;
         }
 
@@ -56,25 +55,25 @@ function DemandeForm() {
             if (error.response && error.response.data.errors) {
                 setErrors(error.response.data.errors);
             } else {
-                setErrors({ general: 'Une erreur est survenue.' });
+                setErrors({ general: 'An error occurred.' });
             }
         }
     };
 
-    return (
+    return (    
         <form onSubmit={handleSubmit} className="demande-form">
-            <h2 className="demande-title">Soumettre une Demande</h2>
+            <h2 className="demande-title">Submit a Request</h2>
 
             {/* Email Field */}
             <div className="form-group">
-                <label htmlFor="email" className="demande-label">Adresse Email</label>
+                <label htmlFor="email" className="demande-label">Email Address</label>
                 <input
                     type="email"
                     name="email"
                     id="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Votre email"
+                    placeholder="Your email"
                     className="demande-input"
                     required
                 />
@@ -83,14 +82,14 @@ function DemandeForm() {
 
             {/* Apogee Field */}
             <div className="form-group">
-                <label htmlFor="apogee" className="demande-label">Numéro d’Apogée</label>
+                <label htmlFor="apogee" className="demande-label">Apogee Number</label>
                 <input
                     type="text"
                     name="apogee"
                     id="apogee"
                     value={formData.apogee}
                     onChange={handleChange}
-                    placeholder="Votre code Apogee"
+                    placeholder="Your Apogee code"
                     className="demande-input"
                     required
                 />
@@ -106,7 +105,7 @@ function DemandeForm() {
                     id="cin"
                     value={formData.cin}
                     onChange={handleChange}
-                    placeholder="Votre CIN"
+                    placeholder="Your CIN"
                     className="demande-input"
                     required
                 />
@@ -115,7 +114,7 @@ function DemandeForm() {
 
             {/* Document Type Field */}
             <div className="form-group">
-                <label htmlFor="document_type" className="demande-label">Type de Document</label>
+                <label htmlFor="document_type" className="demande-label">Document Type</label>
                 <select
                     name="document_type"
                     id="document_type"
@@ -124,23 +123,23 @@ function DemandeForm() {
                     className="demande-select"
                     required
                 >
-                    <option value="">Sélectionnez un type de document</option>
-                    <option value="Attestation de Scolarité">Attestation de Scolarité</option>
-                    <option value="Convention de Stage">Convention de Stage</option>
-                    <option value="Attestation de Réussite">Attestation de Réussite</option>
+                    <option value="">Select a document type</option>
+                    <option value="Attestation de Scolarité">Certificate of Enrollment</option>
+                    <option value="Convention de Stage">Internship Agreement</option>
+                    <option value="Attestation de Réussite">Certificate of Achievement</option>
                 </select>
                 {errors.document_type && <p className="error-message">{errors.document_type[0]}</p>}
             </div>
 
             {/* Additional Information Field */}
             <div className="form-group">
-                <label htmlFor="autres" className="demande-label">Informations Supplémentaires</label>
+                <label htmlFor="autres" className="demande-label">Additional Information</label>
                 <textarea
                     name="autres"
                     id="autres"
                     value={formData.autres}
                     onChange={handleChange}
-                    placeholder="Informations Supplémentaires"
+                    placeholder="Additional Information"
                     maxLength="1000"
                     className="demande-textarea"
                 ></textarea>
@@ -149,9 +148,9 @@ function DemandeForm() {
 
             {/* Buttons */}
             <div className="demande-buttons">
-                <button type="submit" className="demande-submit-button">Soumettre</button>
+                <button type="submit" className="demande-submit-button">Submit</button>
                 <button type="button" className="demande-back-button" onClick={() => navigate('/formulate')}>
-                    Retour
+                    Back
                 </button>
             </div>
 

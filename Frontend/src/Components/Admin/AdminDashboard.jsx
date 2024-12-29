@@ -1,114 +1,162 @@
-
-import React from 'react';
-import { Pie, Bar, Line } from 'react-chartjs-2'; // Import Pie, Bar, and Line chart from react-chartjs-2
-import { Chart as ChartJS } from 'chart.js/auto';
-
-import './AdminDashboard.css'; // Import the custom CSS
-
-import Sidebar from '../Sidebar.jsx';
+import React, { useEffect, useState } from "react";
+import { Pie, Line, Radar, PolarArea, Bar } from "react-chartjs-2"; // Importing required chart components
+import Sidebar from "../Sidebar.jsx";
+import api from "../../api"; // Axios instance for fetching data
+import "./AdminDashboard.css"; // Import custom CSS
 
 function AdminDashboard() {
+    const [statistics, setStatistics] = useState(null);
+    const [error, setError] = useState("");
 
-    // Data for Pie Charts (Requests and Reclamations)
-    const totalRequestData = {
-        labels: ['Active', 'Completed'],
+    useEffect(() => {
+        const fetchStatistics = async () => {
+            try {
+                const response = await api.get("/admin/statistics");
+                if (response.data.success) {
+                    setStatistics(response.data.data);
+                } else {
+                    setError(response.data.message || "Failed to fetch statistics");
+                }
+            } catch (err) {
+                setError("Error fetching statistics. Please try again.");
+            }
+        };
+
+        fetchStatistics();
+    }, []);
+
+    if (!statistics && !error) return <p>Loading statistics...</p>;
+    if (error) return <p className="error-message">{error}</p>;
+
+    // Prepare chart configurations
+    const createPieData = (labels, data, colors) => ({
+        labels,
         datasets: [
             {
-                data: [1200, 300], // Active and Completed Requests
-                backgroundColor: ['#e65c3b', '#f5b99b'], // Gradient-like effect with similar shades
-                hoverOffset: 4,
+                data: data || [0, 0],
+                backgroundColor: colors,
+                hoverOffset: 10,
                 borderWidth: 1,
             },
         ],
-    };
+    });
 
-    const validationRequestData = {
-        labels: ['Pending', 'Rejected', 'Approved'],
+    const createLineData = (labels, datasets) => ({
+        labels,
+        datasets,
+    });
+
+    const createRadarData = (labels, datasets) => ({
+        labels,
+        datasets,
+    });
+
+    const createPolarAreaData = (labels, data, colors) => ({
+        labels,
         datasets: [
             {
-                data: [50, 30, 200],
-                backgroundColor: ['#b9450f', '#8e2b04', '#f2984b'], // Using shades of your main color
-                hoverOffset: 4,
+                data: data || [0, 0],
+                backgroundColor: colors,
                 borderWidth: 1,
             },
         ],
-    };
+    });
 
-    const reclamationData = {
-        labels: ['Resolved', 'Pending'],
-        datasets: [
-            {
-                data: [80, 20],
-                backgroundColor: ['#e65c3b', '#f5b99b'], // Similar gradient effect
-                hoverOffset: 4,
-                borderWidth: 1,
-            },
-        ],
-    };
+    const createBarData = (labels, datasets) => ({
+        labels,
+        datasets,
+    });
 
-    const studentsData = {
-        labels: ['Enrolled', 'Graduated', 'Dropped'],
-        datasets: [
-            {
-                data: [500, 100, 50],
-                backgroundColor: ['#e65c3b', '#f5b99b', '#b9450f'],
-                hoverOffset: 4,
-                borderWidth: 1,
-            },
-        ],
-    };
+    // Ensure nested data exists before accessing
+    const demandesData = statistics?.demandes || { pending: 0, refused: 0, accepted: 0 };
+    const reclamationsDataStats = statistics?.reclamations || { replied: 0, pending: 0 };
+    const trendsData = statistics?.trends || { demandesByDate: [], reclamationsByDate: [] };
 
-    // Data for the Bar Chart (Document Type Requests)
-    const barChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May'],
-        datasets: [
-            {
-                label: 'Attestation de Scolarité',
-                data: [12, 19, 3, 5, 2],
-                backgroundColor: '#e65c3b',
-                borderColor: '#b9450f',
-                borderWidth: 1,
-            },
-            {
-                label: 'Convention de Stage',
-                data: [7, 3, 2, 6, 4],
-                backgroundColor: '#f5b99b',
-                borderColor: '#e65c3b',
-                borderWidth: 1,
-            },
-            {
-                label: 'Attestation de Réussite',
-                data: [5, 8, 6, 4, 7],
-                backgroundColor: '#b9450f',
-                borderColor: '#8e2b04',
-                borderWidth: 1,
-            },
-        ],
-    };
+    const validationRequestsData = createPieData(
+        ["Pending", "Rejected", "Approved"],
+        [demandesData.pending, demandesData.refused, demandesData.accepted],
+        ["#b9450f", "#8e2b04", "#f2984b"]
+    );
 
-    // Data for the Line Chart (Trends over Time)
-    const lineChartData = {
-        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], // Updated to days of the week
-        datasets: [
+    const reclamationsData = createPieData(
+        ["Resolved", "Pending"],
+        [reclamationsDataStats.replied, reclamationsDataStats.pending],
+        ["#e65c3b", "#f5b99b"]
+    );
+
+    const lineChartData = createLineData(
+        trendsData.demandesByDate.map((item) => item.date || "N/A"), // Dates for X-axis
+        [
             {
-                label: 'Total Requests',
-                data: [150, 170, 180, 160, 200],
-                borderColor: '#b9450f',
-                backgroundColor: 'rgba(185, 69, 15, 0.2)',
+                label: "Demandes",
+                data: trendsData.demandesByDate.map((item) => item.count || 0),
+                borderColor: "#4caf50",
+                backgroundColor: "rgba(76, 175, 80, 0.2)",
                 tension: 0.4,
                 fill: true,
             },
             {
-                label: 'Reclamations',
-                data: [50, 60, 70, 90, 110],
-                borderColor: '#e65c3b',
-                backgroundColor: 'rgba(230, 92, 59, 0.2)',
+                label: "Reclamations",
+                data: trendsData.reclamationsByDate.map((item) => item.count || 0),
+                borderColor: "#f44336",
+                backgroundColor: "rgba(244, 67, 54, 0.2)",
                 tension: 0.4,
                 fill: true,
             },
-        ],
-    };
+        ]
+    );
 
+    const radarChartData = createRadarData(
+        ["Pending", "Accepted", "Refused", "Replied"],
+        [
+            {
+                label: "Demandes",
+                data: [demandesData.pending, demandesData.accepted, demandesData.refused, 0],
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 2,
+            },
+            {
+                label: "Reclamations",
+                data: [reclamationsDataStats.pending, 0, 0, reclamationsDataStats.replied],
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 2,
+            },
+        ]
+    );
+
+    const polarAreaChartData = createPolarAreaData(
+        ["Pending Demandes", "Accepted Demandes", "Refused Demandes", "Pending Reclamations", "Replied Reclamations"],
+        [
+            demandesData.pending,
+            demandesData.accepted,
+            demandesData.refused,
+            reclamationsDataStats.pending,
+            reclamationsDataStats.replied,
+        ],
+        ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"]
+    );
+
+    const barChartData = createBarData(
+        [...new Set([...trendsData.demandesByDate.map(item => item.date), ...trendsData.reclamationsByDate.map(item => item.date)])], // Merge dates
+        [
+            {
+                label: "Demandes",
+                data: trendsData.demandesByDate.map(item => item.count || 0),
+                backgroundColor: "rgba(75, 192, 192, 0.6)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1,
+            },
+            {
+                label: "Reclamations",
+                data: trendsData.reclamationsByDate.map(item => item.count || 0),
+                backgroundColor: "rgba(153, 102, 255, 0.6)",
+                borderColor: "rgba(153, 102, 255, 1)",
+                borderWidth: 1,
+            },
+        ]
+    );
 
     return (
         <div className="admin-dashboard">
@@ -116,100 +164,48 @@ function AdminDashboard() {
             <div className="dashboard-content">
                 <h1 className="dashboard-title">Admin Dashboard</h1>
 
-                {/* Container for Bar and Line charts - Placing them at the top */}
+                {/* Line Chart */}
                 <div className="charts-container">
-                    <div className="bar-chart-card">
-                    <h3 className="chart-title">Document Requests Monthly</h3>
-
-                        <Bar data={barChartData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                tooltip: {
-                                    callbacks: {
-                                        label: (tooltipItem) => {
-                                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-                                        },
-                                    },
-                                },
-                            },
-                        }} />
-                    </div>
-
-                    <div className="line-chart-card">
-                        <h3 className="chart-title">Trends Over Time</h3>
-                        <Line data={lineChartData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                tooltip: {
-                                    callbacks: {
-                                        label: (tooltipItem) => {
-                                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-                                        },
-                                    },
-                                },
-                            },
-                        }} />
+                    <div className="chart-card">
+                        <h3>Grouped Data Over Time</h3>
+                        <Line data={lineChartData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
                     </div>
                 </div>
 
-                {/* Adding space between the first set of charts and the Pie charts */}
-                <div className="space-between-charts"></div>
-
-                <div className="stats-cards">
+                {/* Bar Chart */}
+                <div className="charts-container">
                     <div className="chart-card">
-                        <h3>Total Requests</h3>
-                        <Pie data={totalRequestData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                tooltip: {
-                                    callbacks: {
-                                        label: (tooltipItem) => {
-                                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-                                        },
-                                    },
-                                },
-                            },
-                        }} />
+                        <h3>Bar Chart - Requests by Date</h3>
+                        <Bar data={barChartData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
                     </div>
+                </div>
 
+                {/* Radar Chart */}
+                <div className="charts-container">
+                    <div className="chart-card">
+                        <h3>Radar Chart - Demandes and Reclamations Status</h3>
+                        <Radar data={radarChartData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
+                    </div>
+                </div>
+
+                {/* Polar Area Chart */}
+                <div className="charts-container">
+                    <div className="chart-card">
+                        <h3>Polar Area Chart - Overall Status</h3>
+                        <PolarArea data={polarAreaChartData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
+                    </div>
+                </div>
+
+                {/* Pie Charts */}
+                <div className="charts-container">
                     <div className="chart-card">
                         <h3>Validation Requests</h3>
-                        <Pie data={validationRequestData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                tooltip: {
-                                    callbacks: {
-                                        label: (tooltipItem) => {
-                                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-                                        },
-                                    },
-                                },
-                            },
-                        }} />
+                        <Pie data={validationRequestsData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
                     </div>
-
                     <div className="chart-card">
-                        <h3>Total Reclamations</h3>
-                        <Pie data={reclamationData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                tooltip: {
-                                    callbacks: {
-                                        label: (tooltipItem) => {
-                                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-                                        },
-                                    },
-                                },
-                            },
-                        }} />
+                        <h3>Reclamations Status</h3>
+                        <Pie data={reclamationsData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
                     </div>
-
-                    
                 </div>
             </div>
         </div>

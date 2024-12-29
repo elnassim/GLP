@@ -1,76 +1,67 @@
-/* Frontend/src/Components/Admin/RequestsPage.css */
+.reclamation-reply-page {
+  display: flex;
+}
 
-.requests-page {
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.reply-container {
+  flex: 1;
   padding: 20px;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.reclamation-details {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.reply-form {
   display: flex;
   flex-direction: column;
 }
 
-.title {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+.reply-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.requests-table {
-  width: 100%;
-  border-collapse: collapse;
+.reply-form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 15px;
 }
 
-.requests-table th, .requests-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.requests-table th {
-  background-color: #f2f2f2;
-  text-align: left;
-}
-
-.requests-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.requests-table tr:hover {
-  background-color: #ddd;
-}
-
-/* Accept Button */
-.accept-button {
-  background-color: #4CAF50; /* Green */
-  border: none;
+.submit-button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
   color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.9rem;
-  margin: 2px;
-  border-radius: 4px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
 }
 
-.accept-button:hover {
+.submit-button:hover {
   background-color: #45a049;
 }
 
-/* Refuse Button */
-.refuse-button {
-  background-color: #f44336; /* Red */
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.9rem;
-  margin: 2px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.success-message {
+  color: green;
+  margin-top: 10px;
 }
 
-.refuse-button:hover {
-  background-color: #da190b;
+.error-message {
+  color: red;
+  margin-top: 10px;
 }

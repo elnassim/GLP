@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from 'react';
+// Frontend/src/Components/Admin/ReclamationPage.jsx
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ReclamationPage.css';
+import api from '../../api'; // Ensure this is correctly set up as your Axios instance
 import Sidebar from '../Sidebar.jsx';
-import axios from 'axios';
+import './ReclamationPage.css'; // Ensure correct path
 
 function ReclamationPage() {
     const navigate = useNavigate();
     const [reclamations, setReclamations] = useState([]);
-    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // Fetch reclamations from the backend API
     useEffect(() => {
         const fetchReclamations = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/reclamation');
-                setReclamations(response.data);
+                const response = await api.get('/reclamations', {
+                    params: { status: 'pending' },
+                });
+                setReclamations(response.data.data);
+                setLoading(false);
             } catch (err) {
-                setError('Error fetching reclamations. Please try again.');
+                console.error('Error fetching reclamations:', err);
+                setError('Failed to load reclamations.');
+                setLoading(false);
             }
         };
 
@@ -25,36 +32,55 @@ function ReclamationPage() {
 
     const handleConsultClick = (id) => {
         // Navigate to the reply page for the selected reclamation
-        navigate(`/reclamation/${id}`);
+        navigate(`/reclamation/${id}/reply`);
     };
+
+    if (loading) {
+        return (
+            <div className="reclamation-list-page">
+                <Sidebar />
+                <div>Loading reclamations...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="reclamation-list-page">
+                <Sidebar />
+                <div className="error-message">{error}</div>
+            </div>
+        );
+    }
 
     return (
         <div className="reclamation-list-page">
             <Sidebar />
-            <h2 className="title">Reclamations</h2>
-            {error && <p className="error-message">{error}</p>}
+            <h2 className="title">Pending Reclamations</h2>
             <div className="reclamation-list">
                 {reclamations.length > 0 ? (
                     reclamations.map((reclamation) => (
                         <div key={reclamation.id} className="reclamation-card">
-                            <h3 className="reclamation-subject">{reclamation.subject}</h3>
+                            <h3 className="reclamation-subject">{reclamation.sujet}</h3>
                             <p className="reclamation-description">
                                 {reclamation.description.slice(0, 100)}...
                             </p>
                             <p className="reclamation-meta">
-                                <span>By: {reclamation.submittedBy}</span> |{' '}
-                                <span>{new Date(reclamation.date).toLocaleDateString()}</span>
+                                <span>By: {reclamation.email}</span> |{' '}
+                                <span>
+                                    {new Date(reclamation.created_at).toLocaleDateString()}
+                                </span>
                             </p>
                             <button
                                 className="consult-button"
-                                onClick={() => handleConsultClick(reclamation.id)}
+                                onClick={() => navigate(`/admin/reclamation/${reclamation.id}/reply`)}
                             >
                                 Consult
                             </button>
                         </div>
                     ))
                 ) : (
-                    <p>No reclamations found.</p>
+                    <p>No pending reclamations.</p>
                 )}
             </div>
         </div>

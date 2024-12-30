@@ -37,6 +37,14 @@ class StudentsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Manal talbi',
+                'email' => 'talbimanal28@gmail.com',
+                'apogee' => '000000',
+                'cin' => 'L000004', // Unique CIN
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

@@ -124,7 +124,6 @@ function DemandeForm() {
                 >
                     <option value="">Select a document type</option>
                     <option value="Attestation de Scolarité">Certificate of Enrollment</option>
-                    <option value="Convention de Stage">Internship Agreement</option>
                     <option value="Attestation de Réussite">Certificate of Achievement</option>
                 </select>
                 {errors.document_type && <p className="error-message">{errors.document_type[0]}</p>}

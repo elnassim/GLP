@@ -19,10 +19,10 @@ class AdministratorSeeder extends Seeder
             [
                 'name' => 'nassim el kaddaoui',
                 'email' => 'elkaddaouinassim@gmail.com',
-                'password' => 'nassim123', 
+                'password' => 'nassim123',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],, 
+            ],
         ]);
     }
 }

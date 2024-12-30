@@ -5,7 +5,6 @@
     align-items: center;
     height: 100vh;
     position: relative; /* To position the background image */
-    background-color: #f4f4f4; /* Light gray background to contrast with the form */
 }
 
 /* Background Image Styling */
@@ -23,8 +22,7 @@
 /* Login Form Container */
 .login-container {
     background-color: #fff; /* White background for the form */
-    padding: 30px; /* Padding for comfortable spacing */
-    border-radius: 8px; /* Rounded corners */
+    padding: 60px;    border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     width: 100%;
     max-width: 400px; /* Limit the form width */

@@ -54,7 +54,7 @@ function HistoryOperationsPage() {
       "Attestation de Réussite": "Certificate of Achievement",
     };
     return translations[type] || type; // Return translated type or original if not found
-
+  };
   
 
   // Prepare Chart Data

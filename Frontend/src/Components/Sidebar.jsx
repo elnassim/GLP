@@ -33,7 +33,7 @@ function Sidebar() {
             {/* User Profile Section */}
             <div className="profile-section">
                
-                <h3 className="profile-name">John Doe</h3>
+                <h3 className="profile-name">Nasym Admin</h3>
                 <p className="profile-rol">Administrator</p>
             </div>
 

@@ -9,7 +9,7 @@ function FormulateSelection() {
             <h1 className="formulate-title">Choose Your Option</h1>
             <div className="formulate-buttons">
                 <Link to="demande" className="formulate-link">
-                    <button className="formulate-option-button">Demande</button>
+                    <button className="formulate-option-button">Request</button>
                 </Link>
                 <Link to="reclamation" className="formulate-link">
                     <button className="formulate-option-button">Reclamation</button>

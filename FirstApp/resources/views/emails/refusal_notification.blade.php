@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Votre Attestation de Scolarité</title>
+    <title>Refusal of Your Request</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,29 +31,21 @@
             font-size: 0.9em;
             color: #777;
         }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #e67320;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Bonjour,</h1>
+            <h1>Refusal of Your Request</h1>
         </div>
         <div class="content">
-            <p>Votre demande de <strong>{{ $demande->document_type }}</strong> a été acceptée.</p>
-            <p>Veuillez trouver le document en pièce jointe.</p>
+            <p>Dear Student,</p>
+            <p>We regret to inform you that your request for <strong>{{ $documentType }}</strong> has been refused.</p>
+            <p><strong>Reason for Refusal:</strong> {{ $reason }}</p>
         </div>
         <div class="footer">
-            <p>Cordialement,</p>
-            <p>L'équipe administrative</p>
+            <p>Best regards,</p>
+            <p>The Administrative Team</p>
         </div>
     </div>
 </body>

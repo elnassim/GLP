@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Demande; // Ensure you've created this model
 use Illuminate\Support\Facades\Validator;
 use App\Models\Student;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RefusalNotificationMail;
 
 class DemandeController extends Controller
 {
@@ -92,17 +94,30 @@ class DemandeController extends Controller
     
 
 
-    public function refuseDemande($id)
+    public function refuseDemande(Request $request, $id)
     {
-        $demande = Demande::find($id);
+        try {
+            $demande = Demande::find($id);
 
-        if (!$demande) {
-            return response()->json(['message' => 'Demande not found.'], 404);
+            if (!$demande) {
+                return response()->json(['message' => 'Demande not found.'], 404);
+            }
+
+            $demande->status = 'refused';
+            $demande->refusal_reason = $request->input('reason'); // Save the refusal reason
+            $demande->save();
+
+            // Send email notification
+            Mail::to($demande->email)->send(new RefusalNotificationMail($demande));
+
+            return response()->json(['message' => 'Demande refused successfully.'], 200);
+        } catch (\Exception $e) {
+            Log::error('Error refusing Demande: ' . $e->getMessage());
+
+            return response()->json([
+                'message' => 'Erreur lors de la rémission de la demande.',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $demande->status = 'refused';
-        $demande->save();
-
-        return response()->json(['message' => 'Demande refused successfully.'], 200);
     }
 }

@@ -19,6 +19,7 @@ class CreateDemandesTable extends Migration
             $table->string('document_type');
             $table->text('autres')->nullable();
             $table->string('status')->default('pending');
+            $table->text('refusal_reason')->nullable();
             $table->timestamps();
         });
     }
